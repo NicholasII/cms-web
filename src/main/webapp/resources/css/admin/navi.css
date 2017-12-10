@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0px;
+	padding-left: -40px;
+}
+span.navTilteTxt{
+	height:100%;
+	text-align: center;
+	padding-top: -20px;
+	padding-left: 30px;
+	position:relative;
+	top:5px;
+	left:20px;	
+}
+span.navTilteTxt {
+	background:url("/cms-web/resources/img/nav_title_icon.png") no-repeat;
+}
+h3.navTitle{
+	height:28px;
+	background:url("/cms-web/resources/img/nav_title_bg.png") repeat-x;
+	border-top:1px solid #7da2bf;
+	border-bottom:1px solid #1d486a;
+	color:#fff;
+	font-weight:normal;
+	font-size:12px;
+	-webkit-margin-start: -40px
+}
+ul{
+	margin:0px;
+	
+	list-style: url("/cms-web/resources/img/nav_child_icon.png");
+}
+li{
+	line-height:20px;
+}
+ul.navSelected  {
+	background:url("/cms-web/resources/img/nav_title_icon_selected.png") no-repeat;
+}
+a{
+	text-decoration: none;
+}
