@@ -28,7 +28,7 @@ $(function(){
 			<h3 class="navTitle">
 				<span class="navTilteTxt">文章管理</span>
 			</h3>
-			<li><i class="icon"></i><a href="${context}/user/page" target="content">栏目信息管理</a></li>
+			<li><i class="icon"></i><a href="${context}/channel/page" target="content">栏目信息管理</a></li>
 			<li><i class="icon"></i><a href="${context}/user/page" target="content">文章信息管理</a></li>
 
 		</ul>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sun.cms.web.dao.channel.ChannelDao">
+	<select id="select" parameterType="com.sun.cms.web.dto.channel.Channel"
+		resultType="com.sun.cms.web.dto.channel.Channel">
+		select * from t_channel
+		<where>
+			<if test="id!=null">
+				and id = #{id}
+			</if>
+			<if test="p_id!=null">
+				and pid = #{p_id}
+			</if>
+		</where>
+	</select>
+	<delete id="delete" parameterType="com.sun.cms.web.dto.channel.Channel">
+		delete from t_channel
+		where id = #{id}
+	</delete>
+	<insert id="insert" parameterType="com.sun.cms.web.dto.channel.Channel">
+		insert into t_channel (id, pid, name, customLink, customLinkUrl,
+		channelType,
+		isIndex, isTopNav, recommend,status,orders)
+		values (#{id}, #{p_id}, #{name}, #{customLink}, #{customLinkUrl},
+		#{channelType},
+		#{isIndex}, #{isTopNav}, #{recommend},#{status},#{order})
+	</insert>
+	<update id="update" parameterType="com.sun.cms.web.dto.channel.Channel">
+		update t_channel
+		<set>
+			<if test="id != null">
+				id = #{id},
+			</if>
+			<if test="p_id != null">
+				pid = #{pid},
+			</if>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="customLink != null">
+				customLink = #{customLink},
+			</if>
+			<if test="customLinkUrl != null">
+				customLinkUrl = #{customLinkUrl},
+			</if>
+			<if test="channelType != null">
+				channelType = #{channelType},
+			</if>
+			<if test="isIndex != null">
+				isIndex = #{isIndex},
+			</if>
+			<if test="isTopNav != null">
+				isTopNav = #{isTopNav},
+			</if>
+			<if test="recommend != null">
+				recommend = #{recommend},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="order != null">
+				order = #{order},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	<select id="selectSubTree" parameterType="java.lang.Integer"
+		resultType="com.sun.cms.web.dto.channel.ChannelTree">
+		select * from t_channel where pid = #{pid}
+	</select>
+</mapper>

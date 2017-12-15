@@ -11,6 +11,8 @@
 <script type="text/javascript" src="${context}/resources/lib/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${context}/resources/lib/jquery.metadata.js"></script>
 <script type="text/javascript" src="${context}/resources/lib/messages_zh.js"></script>
+<script type="text/javascript" src="${context}/resources/lib/ZTree/jquery.ztree.all.min.js"></script>
+<link rel="stylesheet" href="${context}/resources/lib/ZTree/zTreeStyle/zTreeStyle.css" type="text/css">
 <script type="text/javascript">
 	var ctx  = "${context}";
 </script>
