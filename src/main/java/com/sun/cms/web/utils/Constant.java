@@ -6,4 +6,10 @@ package com.sun.cms.web.utils;
  */
 public class Constant {
 	public static final String SUCCESS = "success";
+	public static final String NAV_CHANNEL="导航栏目";
+	public static final String TOPIC_LIST = "文章列表栏目";
+	public static final String TOPIC_CONTENT = "文章内容栏目";
+	public static final String TOPIC_IMG = "图片列表栏目";
+	public static final String ROOT_NAME = "网站系统栏目";
+	public static final int ROOT_ID = 0;
 }
