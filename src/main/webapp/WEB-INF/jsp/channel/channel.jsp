@@ -26,16 +26,18 @@
 </head>
 <body>
 	<div id="content">
-		<div class=admin_link_bar>
+		<div class=link_bar>
 			<jsp:include page="topinc.jsp"></jsp:include>
 		</div>
-		<!-- <div id="subcontent"> -->
+		<div id="subcontent">
 			<div id="left">
 				<ul id="channelTree" class="ztree"></ul>
 			</div>
 			<div id="right">
-				<div class="admin_link_bar">
-					<jsp:include page="inc.jsp"></jsp:include>
+				<div class="link_bar">
+					<jsp:include page="inc.jsp">
+						<jsp:param value="${pid}" name="pid" />
+					</jsp:include>
 				</div>
 				<table>
 					<thead>
@@ -49,7 +51,18 @@
 						</tr>
 					</thead>
 					<tbody>
-
+						<c:forEach items="${channel}" var="c" varStatus="status">
+							<tr>
+								<td>${c.name}</td>
+								<td>${c.channelType}</td>
+								<td>${c.recommend}</td>
+								<td>${c.isIndex}</td>
+								<td>${c.orders}</td>
+								<td colspan="2"><a href="#" class="a_button">删除</a> <a
+									href="#" class="a_button">更新</a> <a href="#" class="a_button">查询管理栏目</a>
+									<a href="#" class="a_button">设置管理栏目</a></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 					<tfoot>
 						<tr>
@@ -63,7 +76,7 @@
 					</tfoot>
 				</table>
 			</div>
-		<!-- </div> -->
+		</div>
 	</div>
 </body>
 </html>

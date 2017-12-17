@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,13 +20,13 @@
 				</tr>
 				<tr>
 					<td colspan="1">栏目名称:</td>
-					<td colspan="2"><input type="text" name="name" id="name"></td>
+					<td colspan="2"><input type="text" name="name" id="name" required="required"></td>
 				</tr>
 				<tr>
 					<td colspan="1">是否制定链接:</td>
 					<td colspan="2">
-						<input type="checkbox" name="customLink" value="0">不指定
-						<input type="checkbox" name="customLink" value="1">指定
+						<input type="radio" name="customLink" value="0" checked="checked">不指定
+						<input type="radio" name="customLink" value="1">指定
 					</td>
 				</tr>
 				<tr>
@@ -45,35 +45,36 @@
 				<tr>
 					<td colspan="1">是否留在主页显示:</td>
 					<td colspan="2">
-						<input type="checkbox" name="isIndex"  value="0">不是&nbsp; 
-						<input type="checkbox" name="isIndex"  value="1">是&nbsp;
+						<input type="radio" name="isIndex"  value="0" checked="checked">不是&nbsp; 
+						<input type="radio" name="isIndex"  value="1">是&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<td colspan="1">导航顶部栏目:</td>
 					<td colspan="2">
-						<input type="checkbox" name="isTopNav"  value="0">不是&nbsp; 
-						<input type="checkbox" name="isTopNav"  value="1">是&nbsp;
+						<input type="radio" name="isTopNav"  value="0" checked="checked">不是&nbsp; 
+						<input type="radio" name="isTopNav"  value="1">是&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<td colspan="1">是否是推荐栏目:</td>
 					<td colspan="2">
-						<input type="checkbox" name="recommend"  value="0">不是&nbsp; 
-						<input type="checkbox" name="recommend"  value="1">是&nbsp;
+						<input type="radio" name="recommend"  value="0" checked="checked">不是&nbsp; 
+						<input type="radio" name="recommend"  value="1">是&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<td colspan="1">状态:</td>
 					<td colspan="2">
-						<input type="checkbox" name="status" value="1">启用&nbsp; 
-						<input type="checkbox" name="status" value="0">停用&nbsp;
+						<input type="radio" name="status" value="1" checked="checked">启用&nbsp; 
+						<input type="radio" name="status" value="0">停用&nbsp;
 					</td>
 				</tr>
 				<tr style="text-align: center;">
 					<td colspan="3">
-						<input type="text" name="p_id" value="${pid}">
-						<input type="text" name="id" value="0">
+						<input type="text" name="orders" value="0" style="display:none">
+						<input type="text" name="p_id" value="${pid}" style="display:none">
+						<input type="text" name="id" value="0" style="display:none">
 						<input type="submit" value="添加栏目">
 						<input type="reset">
 					</td>

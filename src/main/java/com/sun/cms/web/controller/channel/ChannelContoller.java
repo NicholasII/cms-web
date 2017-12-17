@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,7 +27,7 @@ public class ChannelContoller extends BaseController<Channel>{
 	ChannelService channelService;
 	
 	@RequestMapping("/page")
-	public ModelAndView page() {
+	public ModelAndView page(@RequestParam(value="pid",defaultValue="null",required=true)String p_id) {
 		ModelAndView modelAndView = new ModelAndView("/channel/channel");
 		List<ChannelTree> trees = new ArrayList<>();
 		ChannelTree tree = new ChannelTree();
@@ -38,8 +39,22 @@ public class ChannelContoller extends BaseController<Channel>{
 		trees = channelService.getChildren(trees);
 		String channels =  JSON.toJSONString(trees);
 		modelAndView.addObject("tree",channels);
+		if ("null".equals(p_id)) {
+			modelAndView.addObject("pid", Constant.ROOT_ID);
+			Channel channel = new Channel();
+			channel.setP_id(Constant.ROOT_ID);
+			List<Channel> channellist = channelService.getAllList(channel);
+			modelAndView.addObject("channel", channellist);
+		}else {
+			modelAndView.addObject("pid", Integer.valueOf(p_id));
+			Channel channel = new Channel();
+			channel.setP_id(Integer.valueOf(p_id));
+			List<Channel> channellist = channelService.getAllList(channel);
+			modelAndView.addObject("channel", channellist);
+		}		
 		return modelAndView;
 	}
+	
 	
 	
 	@RequestMapping("/addPage/{pid}")
