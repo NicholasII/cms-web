@@ -8,30 +8,42 @@
 <link rel="stylesheet" type="text/css" href="/cms-web/resources/css/user/main.css">
 
 </head>
+
 <body style="text-align: center;">
+	<script type="text/javascript">
+		function isneedurl(element) {
+			$("#customLinkUrl").attr("required","required")
+		}
+		function notneedurl(element) {
+			$("#customLinkUrl").removeAttr("required");
+		}
+	</script>
 	<div id="content">
 	<div class="admin_link_bar">
-     <jsp:include page="inc.jsp"></jsp:include>
+     <jsp:include page="inc.jsp">
+     	<jsp:param value="${pid}" name="pid" />
+		<jsp:param value="${pname}" name="pname"/>
+     </jsp:include>
     </div>
 		<form id="adduser" action="/cms-web/channel/add" method="post">
 			<table>
 				<tr>
-					<td colspan="3" class="head" style="line-height: 29px;font-size: 16px;">添加子栏目[${pid}]</td>
+					<td colspan="3" class="head" style="line-height: 29px;font-size: 16px;direction: ltr;">添加子栏目[${pid}]</td>
 				</tr>
 				<tr>
-					<td colspan="1">栏目名称:</td>
+					<td colspan="1">栏目名称:${parentname}</td>
 					<td colspan="2"><input type="text" name="name" id="name" required="required"></td>
 				</tr>
 				<tr>
 					<td colspan="1">是否制定链接:</td>
 					<td colspan="2">
-						<input type="radio" name="customLink" value="0" checked="checked">不指定
-						<input type="radio" name="customLink" value="1">指定
+						<input type="radio" name="customLink" value="0" checked="checked" onchange="notneedurl(this)">不指定
+						<input type="radio" name="customLink" value="1" onchange="isneedurl(this)">指定
 					</td>
 				</tr>
 				<tr>
 					<td colspan="1">链接地址:</td>
-					<td colspan="2"><input type="text" name="customLinkUrl"></td>
+					<td colspan="2"><input type="text" name="customLinkUrl" id="customLinkUrl"></td>
 				</tr>
 				<tr>
 					<td colspan="1">栏目类型:</td>
@@ -73,7 +85,7 @@
 				<tr style="text-align: center;">
 					<td colspan="3">
 						<input type="text" name="orders" value="0" style="display:none">
-						<input type="text" name="p_id" value="${pid}" style="display:none">
+						<input type="text" name="pid" value="${pid}" style="display:none">
 						<input type="text" name="id" value="0" style="display:none">
 						<input type="submit" value="添加栏目">
 						<input type="reset">

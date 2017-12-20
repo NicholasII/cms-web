@@ -1,27 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ include file="/common/import.jsp"%>
+<c:set var="context" value="${pageContext.request.contextPath}"></c:set>
+<script type="text/javascript" src="${context}/common/global.js"></script>
+<script type="text/javascript">
+	username = "${user}";
+</script>
 <style type="text/css">
 frame {
-	border: 1px;
-	frameborder:1;
-	noresize: noresize;
-	marginwidh : 0px;
-	marginheight : 0px;
-	scrolling : no;
+	border: 0;
 }
 </style>
 </head>
-<frameset rows="15%,5%,80%">
-	<frame  src="${context}/templete/top.html">
-	<frame  src="${context}/templete/bar.html">
-	<frameset cols="20%,80%">
-		<frame name="navi" src="${context}/admin/navi">
-		<frame name="content" src="${context}/templete/background.html">
+<frameset cols="*,1035,*" framespacing="0" border="0" scrolling="false">
+	<frame src="${context}/templete/null.html">
+	<frameset rows="110,*" framespacing="0" frameborder="0" scrolling="false" noresize="noresize">
+		<frame name="top" src="${context}/templete/top.jsp" frameborder="0" noresize="noresize" framespacing="0">
+		<frameset cols="164,*" frameborder="0" noresize="noresize">
+			<frame name="navi" src="${context}/admin/navi" noresize="noresize">
+			<frame name="content" src="${context}/templete/background.html">
+		</frameset>
 	</frameset>
+	<frame src="${context}/templete/null.html">
 </frameset>
 </html>

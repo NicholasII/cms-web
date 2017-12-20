@@ -11,13 +11,13 @@ span.navTilteTxt{
 	position:relative;
 	top:5px;
 	left:20px;	
-}
-span.navTilteTxt {
+	font-size: 100%;
 	background:url("/cms-web/resources/img/nav_title_icon.png") no-repeat;
 }
 h3.navTitle{
-	height:28px;
-	background:url("/cms-web/resources/img/nav_title_bg.png") repeat-x;
+	height:30px;
+	background:url("/cms-web/resources/img/nav_title_bg.png") no-repeat;
+	background-size:100%;
 	border-top:1px solid #7da2bf;
 	border-bottom:1px solid #1d486a;
 	color:#fff;
@@ -27,7 +27,6 @@ h3.navTitle{
 }
 ul{
 	margin:0px;
-	
 	list-style: url("/cms-web/resources/img/nav_child_icon.png");
 }
 li{

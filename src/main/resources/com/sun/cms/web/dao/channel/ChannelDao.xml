@@ -8,8 +8,8 @@
 			<if test="id!=null">
 				and id = #{id}
 			</if>
-			<if test="p_id!=null">
-				and pid = #{p_id}
+			<if test="pid!=null">
+				and pid = #{pid}
 			</if>
 		</where>
 	</select>
@@ -18,12 +18,12 @@
 		where id = #{id}
 	</delete>
 	<insert id="insert" parameterType="com.sun.cms.web.dto.channel.Channel">
-		insert into t_channel (id, pid, name, customLink, customLinkUrl,
+		insert into t_channel (pid, name, customLink, customLinkUrl,
 		channelType,
 		isIndex, isTopNav, recommend,status,orders)
-		values (#{id}, #{p_id}, #{name}, #{customLink}, #{customLinkUrl},
+		values (#{pid}, #{name}, #{customLink}, #{customLinkUrl},
 		#{channelType},
-		#{isIndex}, #{isTopNav}, #{recommend},#{status},#{order})
+		#{isIndex}, #{isTopNav}, #{recommend},#{status},#{orders})
 	</insert>
 	<update id="update" parameterType="com.sun.cms.web.dto.channel.Channel">
 		update t_channel
@@ -31,8 +31,8 @@
 			<if test="id != null">
 				id = #{id},
 			</if>
-			<if test="p_id != null">
-				pid = #{p_id},
+			<if test="pid != null">
+				pid = #{pid},
 			</if>
 			<if test="name != null">
 				name = #{name},
@@ -58,8 +58,8 @@
 			<if test="status != null">
 				status = #{status},
 			</if>
-			<if test="order != null">
-				order = #{order},
+			<if test="orders != null">
+				orders = #{orders},
 			</if>
 		</set>
 		where id = #{id}

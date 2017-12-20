@@ -1,6 +1,5 @@
 package com.sun.cms.web.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +23,7 @@ public class LoginController extends BaseController<BaseDto>{
 	public ModelAndView page(){
 		return new ModelAndView("admin/login");
 	}
-	@RequestMapping("/login")
+	@RequestMapping("/main")
 	public ModelAndView login(HttpServletRequest request,
 			@RequestParam(value="name",required=true)String userid,
 			@RequestParam(value="password",required=true)String password){
@@ -36,8 +35,7 @@ public class LoginController extends BaseController<BaseDto>{
 			UserDto userInfo = dtos.get(0);
 			request.getSession().setAttribute("userInfo", userInfo);
 			ModelAndView modelAndView = new ModelAndView("admin/main");
-			modelAndView.addObject("user", userid);
-			modelAndView.addObject("date", new Date());
+			modelAndView.addObject("user", userInfo.getUserName());
 			return modelAndView;
 		}else {
 			ModelAndView modelAndView = new ModelAndView("admin/login");

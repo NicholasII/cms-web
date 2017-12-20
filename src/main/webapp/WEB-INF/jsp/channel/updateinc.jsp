@@ -17,7 +17,6 @@
 	
 </script>
 <span> 
-	<a href="/cms-web/channel/addPage/${pid}?pname=${pname}" class="a_link">添加子栏目</a>
 	<a href="javascript:list()" class="a_link">子栏目列表</a> 
 	<span class="a_link">当前栏目:<span>${pname}[${pid}]</span></span>
 </span>
