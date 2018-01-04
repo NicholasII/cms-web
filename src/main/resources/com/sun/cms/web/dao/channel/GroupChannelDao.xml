@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sun.cms.web.dao.channel.GroupChannelDao">
+	<select id="select" parameterType="com.sun.cms.web.dto.channel.GroupChannelDto"
+		resultType="com.sun.cms.web.dto.channel.GroupChannelDto">
+		select * from t_group_channel
+		<where>
+			<if test="channelid!=null">
+				and channelid = #{channelid}
+			</if>
+			<if test="groupid!=null">
+				and groupid = #{groupid}
+			</if>
+		</where>
+	</select>
+	<delete id="delete" parameterType="com.sun.cms.web.dto.channel.GroupChannelDto">
+		delete from t_group_channel
+		<where>
+			<if test="channelid!=null">
+				and channelid = #{channelid}
+			</if>
+			<if test="groupid!=null">
+				and groupid = #{groupid}
+			</if>
+		</where>
+	</delete>
+	<insert id="insert" parameterType="com.sun.cms.web.dto.channel.GroupChannelDto">
+		insert into t_group_channel (channelid, groupid)
+		values (#{channelid}, #{groupid})
+	</insert>
+	<!-- <update id="update" parameterType="com.sun.cms.web.dto.channel.GroupChannelDto">
+		update t_group_channel
+		<set>
+			<if test="channelid!=null">
+				and channelid = #{channelid}
+			</if>
+			<if test="groupid!=null">
+				and groupid = #{groupid}
+			</if>
+		</set>
+		where id = #{id}
+	</update> -->
+</mapper>
