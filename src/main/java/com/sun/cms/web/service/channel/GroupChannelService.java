@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.sun.cms.service.BaseService;
 import com.sun.cms.web.dao.channel.GroupChannelDao;
 import com.sun.cms.web.dto.channel.ChannelSimpleTree;
 import com.sun.cms.web.dto.channel.GroupChannelDto;
-
+@Service
 public class GroupChannelService extends BaseService<GroupChannelDao, GroupChannelDto>{
 	
 	@Autowired
