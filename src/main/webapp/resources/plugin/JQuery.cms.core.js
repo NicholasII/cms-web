@@ -1,4 +1,4 @@
-;(function($){
+(function($){
 	$.fn.extend({
 		"commonulli":function(options){
 			options=$.extend({
@@ -21,6 +21,15 @@
 				}
 			});
 			return this;
+		},
+		"myZtree":function(options,zNodes){
+			var setting = $.extend({
+				view: {
+					dblClickExpand: false,
+					selectedMulti: false
+				}
+			},options||{});
+			var zTreeObj = $.fn.zTree.init($(this), setting, zNodes);
 		}
 	});
 })(jQuery)

@@ -157,11 +157,11 @@ public class GroupController extends BaseController<GroupDto>{
 	 */
 	@RequestMapping("/getTree")
 	public ModelAndView getTree(HttpServletRequest request){
-		ModelAndView map = new ModelAndView("/group/channelTree");
+		ModelAndView modelAndView = new ModelAndView("/group/channelTree");
 		String pid = request.getParameter("pid");
-		List<ChannelSimpleTree> tree = groupChannelService.havingChannels(pid);
-		map.addObject("tree", tree);
-		return map;
+		List<ChannelSimpleTree> havingtree = groupChannelService.havingChannels(pid);
+		modelAndView.addObject("tree", havingtree);
+		return modelAndView;
 	}
 	
 	
