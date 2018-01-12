@@ -51,4 +51,13 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="havingGroups" parameterType="java.lang.String" resultType="java.lang.String">
+  	SELECT groupid FROM sys_user_group  
+  	<where>
+  		<if test="userid != null">
+  			userid =  #{userid}
+  		</if>
+  	</where>
+  	GROUP BY groupid
+  </select>
 </mapper>

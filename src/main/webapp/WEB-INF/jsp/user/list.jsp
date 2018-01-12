@@ -43,7 +43,7 @@
 
 						<td>${user.tel}</td>
 						<td><a href="" class="a_button">删除</a> <a href=""
-							class="a_button">更新</a> <a href="" class="a_button">管理栏目</a></td>
+							class="a_button">更新</a> <a href="${context}/user/havingChannel?userid=${user.userId}" class="a_button">管理栏目</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

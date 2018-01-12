@@ -1,5 +1,7 @@
 package com.sun.cms.web.dao.channel;
 
+import java.util.List;
+
 import com.sun.cms.dao.BaseDao;
 import com.sun.cms.web.dto.channel.GroupChannelDto;
 /**
@@ -8,5 +10,7 @@ import com.sun.cms.web.dto.channel.GroupChannelDto;
  * 2017年12月26日上午10:14:18
  */
 public interface GroupChannelDao extends BaseDao<GroupChannelDto> {
+	
+	List<GroupChannelDto> havingChannels(String groups);
 	
 }

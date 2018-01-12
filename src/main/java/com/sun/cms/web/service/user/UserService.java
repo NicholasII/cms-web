@@ -1,4 +1,4 @@
-package com.sun.cms.web.service;
+package com.sun.cms.web.service.user;
 
 import java.util.ArrayList;
 import java.util.List;

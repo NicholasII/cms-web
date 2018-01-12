@@ -16,7 +16,7 @@ import com.sun.cms.web.dto.RoleDto;
 import com.sun.cms.web.dto.SystemContext;
 import com.sun.cms.web.dto.UserDto;
 import com.sun.cms.web.dto.UserRoleDto;
-import com.sun.cms.web.service.RoleService;
+import com.sun.cms.web.service.user.RoleService;
 
 @Controller
 @RequestMapping("/role")

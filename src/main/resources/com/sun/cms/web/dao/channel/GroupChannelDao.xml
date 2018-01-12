@@ -28,4 +28,8 @@
 		insert into t_group_channel (channelid, channelpid, groupid, channelname)
 		values (#{channelid}, #{channelpid}, #{groupid}, #{channelname})
 	</insert>
+	<select id="havingChannels" parameterType="java.lang.String"
+		resultType="com.sun.cms.web.dto.channel.GroupChannelDto">
+		select * from t_group_channel where groupid in (#{groups})
+	</select>
 </mapper>

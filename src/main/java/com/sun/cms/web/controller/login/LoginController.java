@@ -1,4 +1,4 @@
-package com.sun.cms.web.controller;
+package com.sun.cms.web.controller.login;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sun.cms.model.BaseDto;
 import com.sun.cms.web.common.BaseController;
 import com.sun.cms.web.dto.UserDto;
-import com.sun.cms.web.service.UserService;
+import com.sun.cms.web.service.user.UserService;
 @Controller
 public class LoginController extends BaseController<BaseDto>{
 	@Autowired

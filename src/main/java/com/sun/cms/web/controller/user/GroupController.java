@@ -26,9 +26,9 @@ import com.sun.cms.web.dto.UserGroupDto;
 import com.sun.cms.web.dto.channel.ChannelSimpleTree;
 import com.sun.cms.web.dto.channel.ChannelTree;
 import com.sun.cms.web.dto.channel.GroupChannelDto;
-import com.sun.cms.web.service.GroupService;
 import com.sun.cms.web.service.channel.ChannelService;
 import com.sun.cms.web.service.channel.GroupChannelService;
+import com.sun.cms.web.service.user.GroupService;
 import com.sun.cms.web.utils.Constant;
 
 @Controller
