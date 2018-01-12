@@ -32,7 +32,7 @@
 						<td  colspan="2">
 							<a href="#" class="a_button">删除</a>
 							<a href="#" class="a_button">更新</a>
-							<a href="#" class="a_button">查询管理栏目</a>
+							<a href="${context}/group/getTree?groupid=${group.groupId}" class="a_button">查询管理栏目</a>
 							<a href="${context}/group/addchannel/page?groupid=${group.groupId}" class="a_button">设置管理栏目</a>
 						</td>
 					</tr>

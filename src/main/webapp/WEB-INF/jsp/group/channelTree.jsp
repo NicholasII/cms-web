@@ -10,19 +10,11 @@
 <link rel="stylesheet" href="${context}/resources/lib/ZTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
 <script type="text/javascript" src="${context}/resources/lib/ZTree/js/jquery-1.4.4.min.js"></script>
 <script type="text/javascript" src="${context}/resources/lib/ZTree/js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="${context}/resources/plugin/JQuery.cms.core.js"></script>
 <script type="text/javascript">
-	var sub_channel_url = ctx + "/channel/page";
-	var zTreeObj;
-	
-	var setting = {
-		
-	}
-	
-	var zNodes = ${tree};
-	$(document).ready(function() {
-		zTreeObj = $.fn.zTree.init($("#channelTree"), setting, zNodes);
-	});
+	var havingTree = ${tree};
 </script>
+<script type="text/javascript" src="${context}/resources/js/group/channelTree.js"></script>
 </head>
 <body>
 	<div>

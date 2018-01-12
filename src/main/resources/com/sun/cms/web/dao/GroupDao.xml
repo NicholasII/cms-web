@@ -30,6 +30,25 @@
     	</if>
     </where>
   </select>
+  <select id="selectOne" parameterType="com.sun.cms.web.dto.GroupDto" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group
+    <where>
+    	<if test="groupId != null">
+    		group_id = #{groupId,jdbcType=VARCHAR}
+    	</if>
+    	<if test="groupName != null">
+    		group_name = #{groupName,jdbcType=VARCHAR}
+    	</if>
+    	<if test="addTime != null">
+    		add_time = #{addTime,jdbcType=TIMESTAMP}
+    	</if>
+    	<if test="updateTime != null">
+    		update_time = #{updateTime,jdbcType=TIMESTAMP}
+    	</if>
+    </where>
+  </select>
   <delete id="delete" parameterType="com.sun.cms.web.dto.GroupDto">
     delete from sys_group
     where group_id = #{groupId,jdbcType=VARCHAR}

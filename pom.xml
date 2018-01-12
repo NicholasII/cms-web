@@ -132,11 +132,11 @@
 		</dependency>
 		<!-- log end -->
 		<!-- 映入JSON -->
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 
-		</dependency>
+		</dependency> -->
 		<!-- 上传组件包 -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>

@@ -25,19 +25,7 @@
 		</where>
 	</delete>
 	<insert id="insert" parameterType="com.sun.cms.web.dto.channel.GroupChannelDto">
-		insert into t_group_channel (channelid, groupid)
-		values (#{channelid}, #{groupid})
+		insert into t_group_channel (channelid, channelpid, groupid, channelname)
+		values (#{channelid}, #{channelpid}, #{groupid}, #{channelname})
 	</insert>
-	<!-- <update id="update" parameterType="com.sun.cms.web.dto.channel.GroupChannelDto">
-		update t_group_channel
-		<set>
-			<if test="channelid!=null">
-				and channelid = #{channelid}
-			</if>
-			<if test="groupid!=null">
-				and groupid = #{groupid}
-			</if>
-		</set>
-		where id = #{id}
-	</update> -->
 </mapper>

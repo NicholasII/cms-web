@@ -14,3 +14,25 @@ function formSubmit(url,data){
     }
     form.appendTo('body').submit().remove();
 }
+/**
+ * 通用ajax提交
+ * @param url
+ * @param type
+ * @param data
+ * @param callback
+ * @returns
+ */
+function commonAjax(url,type,data,callback){
+	$.ajax({
+		url : url,
+		type : type,
+		data : data,
+		success : function(data,status) {
+			var response = data;
+			eval(callback)(response);
+		},
+		error:function(xhr,status,exception){
+			alert("fail")
+		}
+	});
+}

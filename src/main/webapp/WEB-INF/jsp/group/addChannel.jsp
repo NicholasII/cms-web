@@ -13,31 +13,14 @@
 <script type="text/javascript" src="${context}/resources/lib/ZTree/js/jquery.ztree.excheck.min.js"></script>
 <script type="text/javascript" src="${context}/resources/plugin/JQuery.cms.core.js"></script>
 <script type="text/javascript">
-	/* var zTreeObj;
-	var setting = {
-		check:{
-			enable:true,
-			chkboxType:{ "Y" : "p", "N" : "s" },
-			chkStyle : "checkbox"
-		}
-		
-	}
 	var zNodes = ${tree};
-	$(document).ready(function() {
-		zTreeObj = $.fn.zTree.init($("#channelTree"), setting, zNodes);
-		zTreeObj.expandAll(true);
-	}); */
-	var zNodes = ${tree};
-	$("#channelTree").myZtree({
-		check:{
-			enable:true,
-			chkboxType:{ "Y" : "p", "N" : "s" },
-			chkStyle : "checkbox"
-		}
-	},zNodes);
+	var group = ${group};
+	var checkedTrees = ${checkedtree};
 </script>
+<script type="text/javascript" src="${context}/resources/js/group/addChannel.js"></script>
 </head>
-<body>
+<body>		
+	<div><span>当前组名称：</span>${group.groupName}</div>
 	<div id="left">
 		<ul id="channelTree" class="ztree"></ul>
 	</div>

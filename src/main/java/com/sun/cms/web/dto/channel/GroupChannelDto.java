@@ -9,19 +9,10 @@ import com.sun.cms.model.BaseDto;
  */
 public class GroupChannelDto extends BaseDto {
 	
-	private Integer id;
 	private Integer channelid;
 	private String groupid;
 	private Integer channelpid;
 	private String channelname;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public Integer getChannelid() {
 		return channelid;

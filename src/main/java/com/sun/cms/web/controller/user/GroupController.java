@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.sun.cms.model.PageDto;
 import com.sun.cms.web.common.BaseController;
 import com.sun.cms.web.dto.GroupDto;
@@ -91,6 +93,7 @@ public class GroupController extends BaseController<GroupDto>{
 	 */
 	@RequestMapping("/addchannel/page")
 	public ModelAndView addChannlePage(HttpServletRequest request){
+		String groupid = request.getParameter("groupid");
 		ModelAndView modelAndView = new ModelAndView("/group/addChannel");
 		List<ChannelTree> trees = new ArrayList<>();
 		ChannelTree tree = new ChannelTree();
@@ -102,10 +105,19 @@ public class GroupController extends BaseController<GroupDto>{
 		trees = channelService.getChildren(trees);
 		String str_tree =  JSON.toJSONString(trees);
 		modelAndView.addObject("tree",str_tree);
-		
-		String pid = request.getParameter("pid");
-		List<ChannelSimpleTree> checkedtree = groupChannelService.havingChannels(pid);
-		modelAndView.addObject("checkedtree", checkedtree);
+		GroupDto groupDto = new GroupDto();
+		groupDto.setGroupId(groupid);
+		groupDto = groupService.getOne(groupDto);
+		if (groupDto!=null) {
+			JSONObject object = JSON.parseObject(JSON.toJSONString(groupDto));
+			modelAndView.addObject("group", object);
+		}
+			
+		List<ChannelSimpleTree> checkedtree = groupChannelService.havingChannels(groupid);
+		if (checkedtree!=null) {
+			JSONArray checkedArray = JSON.parseArray(JSON.toJSONString(checkedtree));
+			modelAndView.addObject("checkedtree", checkedArray);
+		}
 		return modelAndView;
 	}
 	/**
@@ -119,7 +131,7 @@ public class GroupController extends BaseController<GroupDto>{
 	@ResponseBody
 	public ModelMap bindChannel(HttpServletRequest request){
 		ModelMap map = new ModelMap();
-		String channels = request.getParameter("data");
+		String channels = request.getParameter("list");
 		List<GroupChannelDto> list = JSON.parseArray(channels,GroupChannelDto.class);
 		boolean result = false;
 		if (list!=null) {
@@ -158,9 +170,13 @@ public class GroupController extends BaseController<GroupDto>{
 	@RequestMapping("/getTree")
 	public ModelAndView getTree(HttpServletRequest request){
 		ModelAndView modelAndView = new ModelAndView("/group/channelTree");
-		String pid = request.getParameter("pid");
-		List<ChannelSimpleTree> havingtree = groupChannelService.havingChannels(pid);
-		modelAndView.addObject("tree", havingtree);
+		String groupid = request.getParameter("groupid");
+		List<ChannelSimpleTree> havingtree = groupChannelService.havingChannels(groupid);
+		if (havingtree!=null) {
+			JSONArray checkedArray = JSON.parseArray(JSON.toJSONString(havingtree));
+			modelAndView.addObject("tree", checkedArray);
+		}
+		
 		return modelAndView;
 	}
 	
