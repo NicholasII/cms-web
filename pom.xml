@@ -158,16 +158,21 @@
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
 		</dependency>
-		<!-- 自定义maven -->
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>cms-dao</artifactId>
-		</dependency>
 		
 		<dependency>
 				<groupId>jsptags</groupId>
 				<artifactId>pager-taglib</artifactId>
 		</dependency>
+		<!-- 自定义maven -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>cms-dao</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>cms-common</artifactId>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>

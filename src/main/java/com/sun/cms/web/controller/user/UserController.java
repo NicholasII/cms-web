@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.sun.cms.common.utils.SecurityUtil;
 import com.sun.cms.model.PageDto;
 import com.sun.cms.web.common.BaseController;
 import com.sun.cms.web.dto.SystemContext;
@@ -78,7 +79,7 @@ public class UserController extends BaseController<UserDto>{
 		UserDto dto = new UserDto();
 		dto.setUserId(userid);
 		dto.setUserName(name);
-		dto.setPassword(password);
+		dto.setPassword(SecurityUtil.getMD5(password));
 		dto.setMobile(mobile);
 		dto.setTel(tel);
 		dto.setCreateTime(new Date());
