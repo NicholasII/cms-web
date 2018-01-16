@@ -13,4 +13,5 @@ public class Constant {
 	public static final String ROOT_NAME = "网站系统栏目";
 	public static final int ROOT_ID = 0;
 	public static final String RESULT_REASION = "reasion";
+	public static final String CHECKCODE = "checkcode";
 }
