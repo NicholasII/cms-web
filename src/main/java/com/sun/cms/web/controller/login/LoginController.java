@@ -1,7 +1,5 @@
 package com.sun.cms.web.controller.login;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sun.cms.common.utils.SecurityUtil;
 import com.sun.cms.model.BaseDto;
 import com.sun.cms.web.common.BaseController;
 import com.sun.cms.web.dto.UserDto;
@@ -34,28 +31,31 @@ public class LoginController extends BaseController<BaseDto>{
 			HttpSession session){
 		String code = (String) session.getAttribute(Constant.CHECKCODE);
 		
-		if (code.equals(checkcode)) {
-			UserDto user = new UserDto();
-			user.setUserId(userid);
-			user.setPassword(SecurityUtil.getMD5(password));
-			List<UserDto> dtos = userService.getAllList(user);
-			if (dtos!=null && dtos.size()>0) {
-				
-				UserDto userInfo = dtos.get(0);
-				request.getSession().setAttribute("userInfo", userInfo);
-				ModelAndView modelAndView = new ModelAndView("admin/main");
-				modelAndView.addObject("user", userInfo.getUserName());
-				return modelAndView;
-			}else {
+		if (code!=null) {
+			if (code.equals(checkcode)) {
+				UserDto user = new UserDto();
+				user.setUserId(userid);
+				UserDto userInfo = userService.getOne(user);
+				if (userInfo!=null) {
+					request.getSession().setAttribute("userInfo", userInfo);
+					ModelAndView modelAndView = new ModelAndView("admin/main");
+					modelAndView.addObject("user", userInfo.getUserName());
+					return modelAndView;
+				}else {
+					ModelAndView modelAndView = new ModelAndView("admin/login");
+					modelAndView.addObject("error", "请注册用户'"+userid+"'!");
+					return modelAndView;
+				}
+			}else{
 				ModelAndView modelAndView = new ModelAndView("admin/login");
-				modelAndView.addObject("error", "请注册用户'"+userid+"'!");
+				modelAndView.addObject("error", "输入正确的验证码!");
 				return modelAndView;
 			}
-		}else{
+		}else {
 			ModelAndView modelAndView = new ModelAndView("admin/login");
-			modelAndView.addObject("error", "输入正确的验证码!");
 			return modelAndView;
 		}
+		
 		
 	}
 

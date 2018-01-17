@@ -3,22 +3,23 @@ package com.sun.cms.web.dto;
 import com.sun.cms.model.BaseDto;
 
 public class UserGroupDto extends BaseDto{
-	
-    private Integer id;
 
+	private Integer id;
+	
     private String userid;
 
     private String groupid;
-
+    
+    
     public Integer getId() {
-        return id;
-    }
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getUserid() {
+	public String getUserid() {
         return userid;
     }
 

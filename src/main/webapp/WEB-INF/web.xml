@@ -5,6 +5,10 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:spring-mybatis.xml</param-value>
   </context-param>
+  <!-- 设置session过期的时间 min -->
+  <session-config>
+	<session-timeout>30</session-timeout>
+  </session-config>
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

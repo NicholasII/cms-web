@@ -29,6 +29,11 @@
     	</if>
     </where>
   </select>
+  <select id="selectOne" parameterType="com.sun.cms.web.dto.UserDto" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user where user_id = #{userId}
+  </select>
   <delete id="delete" parameterType="com.sun.cms.web.dto.UserDto">
     delete from sys_user
     where user_id = #{userId,jdbcType=VARCHAR}

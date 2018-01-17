@@ -105,4 +105,84 @@ public class UserService extends BaseService<UserDao, UserDto>{
 		}
 		return result;
 	}
+	/**
+	 * 更新用户
+	 * @author dongqun
+	 * 2018年1月17日上午11:22:15
+	 * @param dto
+	 * @param roles
+	 * @param groups
+	 * @return
+	 */
+	public boolean updateUser(UserDto user, String[] roles, String[] groups) {
+		boolean result = true;
+		try {
+			update(user);
+			updateRole(user, roles);
+			updateGroup(user, groups);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return result;
+	}
+	/**
+	 * 更新用户的角色信息
+	 * @author dongqun
+	 * 2018年1月17日下午5:33:11
+	 * @param user
+	 * @param roles
+	 * @return
+	 */
+	private boolean updateRole(UserDto user, String[] roles){
+		try {
+			UserRoleDto userRoleDto = new UserRoleDto();
+			userRoleDto.setUserId(user.getUserId());
+			List<UserRoleDto> roleDtos = userRoleDao.select(userRoleDto);
+			for (UserRoleDto dto : roleDtos) {
+				userRoleDao.delete(dto);
+			}
+			for (int i = 0; i < roles.length; i++) {
+				UserRoleDto roleDto = new UserRoleDto();
+				roleDto.setUserId(user.getUserId());
+				roleDto.setRoleId(roles[i]);
+				userRoleDao.insert(roleDto);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	/**
+	 * 更新用户的分组信息
+	 * @author dongqun
+	 * 2018年1月17日下午6:07:42
+	 * @param user
+	 * @param groups
+	 * @return
+	 */
+	private boolean updateGroup(UserDto user, String[] groups){
+		try {
+			UserGroupDto userGroupDto = new UserGroupDto();
+			userGroupDto.setUserid(user.getUserId());
+			List<UserGroupDto> groupDtos = userGroupDao.select(userGroupDto);
+			for (UserGroupDto dto : groupDtos) {
+				userGroupDao.delete(dto);
+			}
+			for (int i = 0; i < groups.length; i++) {
+				UserGroupDto groupDto = new UserGroupDto();
+				groupDto.setUserid(user.getUserId());
+				groupDto.setGroupid(groups[i]);
+				userGroupDao.insert(groupDto);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 }

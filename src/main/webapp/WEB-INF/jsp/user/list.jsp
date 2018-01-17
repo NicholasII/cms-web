@@ -31,19 +31,23 @@
 						<td>${status.index+1}&nbsp;</td>
 						<td>${user.userId}</td>
 						<td>${user.userName}&nbsp;</td>
-						<c:if test="${user.userId=='admin'}">
-							<td><span>启用</span></td>
-						</c:if>
-						<c:if test="${user.userId!='admin'}">
-							<c:if test="${user.status==1}">
-								<td><span class="button">启用</span> <span class="button">停用</span>
-								</td>
+							<c:if test="${user.userId=='admin'}">
+								<td><span>启用</span></td>
 							</c:if>
-						</c:if>
-
+							<c:if test="${user.userId!='admin'}">
+								<c:if test="${user.status==1}">
+									<td><span style="background: green;" class="button">启用</span> <span class="button">停用</span></td>
+								</c:if>
+								<c:if test="${user.status==0}">
+									<td><span class="button">启用</span> <span style="background: green;" class="button">停用</span></td>
+								</c:if>
+							</c:if>
 						<td>${user.tel}</td>
-						<td><a href="" class="a_button">删除</a> <a href=""
-							class="a_button">更新</a> <a href="${context}/user/havingChannel?userid=${user.userId}" class="a_button">管理栏目</a></td>
+						<td>
+							<a href="" class="a_button">删除</a> 
+							<a href="${context}/user/update/page?userid=${user.userId}" class="a_button">更新</a> 
+							<a href="${context}/user/havingChannel?userid=${user.userId}" class="a_button">管理栏目</a>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
