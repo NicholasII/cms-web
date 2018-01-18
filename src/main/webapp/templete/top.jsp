@@ -68,7 +68,7 @@
 <body>
 <script type="text/javascript">
 function exitSystem() {
-	window.parent.location.href = ctx + "/logout";
+	window.parent.location.href = "/cms-web/logout";
 }
 </script>
 <div id="content">
@@ -79,7 +79,7 @@ function exitSystem() {
 			<a href="<%=request.getContextPath()%>/index"  target="_blank">网站首页</a>
 			|<a href="<%=request.getContextPath()%>/admin/user/showSelf"  target="content">查询个人信息</a>
 			| <a href="<%=request.getContextPath()%>/admin/user/updateSelf"  target="content">修改个人信息</a>
-			| <a href="<%=request.getContextPath()%>/admin/user/updatePwd"  target="content">修改密码</a>
+			| <a href="<%=request.getContextPath()%>/admin/user/updatePwd/page"  target="content">修改密码</a>
 			| <a href="javascript:exitSystem()">退出系统</a>
 		</span>
 	</div>

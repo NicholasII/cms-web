@@ -21,6 +21,9 @@ $("#adduser").validate({
 		name : {
 			required : true,
 		},
+		origin_password:{
+			required : true,
+		},
 		password : {
 			required : true,
 			pass2:true,

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.cms.common.utils.SecurityUtil;
 import com.sun.cms.model.BaseDto;
 import com.sun.cms.web.common.BaseController;
 import com.sun.cms.web.dto.UserDto;
@@ -37,10 +38,16 @@ public class LoginController extends BaseController<BaseDto>{
 				user.setUserId(userid);
 				UserDto userInfo = userService.getOne(user);
 				if (userInfo!=null) {
-					request.getSession().setAttribute("userInfo", userInfo);
-					ModelAndView modelAndView = new ModelAndView("admin/main");
-					modelAndView.addObject("user", userInfo.getUserName());
-					return modelAndView;
+					if (userInfo.getPassword().equals(SecurityUtil.getMD5(password))) {
+						request.getSession().setAttribute("userInfo", userInfo);
+						ModelAndView modelAndView = new ModelAndView("admin/main");
+						modelAndView.addObject("user", userInfo.getUserName());
+						return modelAndView;
+					}else {
+						ModelAndView modelAndView = new ModelAndView("admin/login");
+						modelAndView.addObject("error", "输入密码不正确!");
+						return modelAndView;
+					}			
 				}else {
 					ModelAndView modelAndView = new ModelAndView("admin/login");
 					modelAndView.addObject("error", "请注册用户'"+userid+"'!");
@@ -57,6 +64,12 @@ public class LoginController extends BaseController<BaseDto>{
 		}
 		
 		
+	}
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpSession session){
+		session.invalidate();
+		return new ModelAndView("redirect:/");
 	}
 
 }
