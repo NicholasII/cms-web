@@ -20,6 +20,10 @@
 			</list>
 		</property>
 	</bean>
+	<context:component-scan base-package="com.sun.cms.web">
+		<context:exclude-filter expression="org.springframework.stereotype.Controller"
+			type="annotation" />
+	</context:component-scan>
 	<!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
@@ -47,5 +51,22 @@
 		<!-- 内存中的最大值 -->
 		<property name="maxInMemorySize" value="40960" />
 	</bean>
-
+	<mvc:annotation-driven />
+	<mvc:resources location="/resources/" mapping="/resources/**"/>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/**"/>
+			<mvc:mapping path="/group/**"/>
+			<mvc:mapping path="/role/**"/>
+			<mvc:mapping path="/channel/**"/>
+			<bean class="com.sun.cms.web.filter.AuthInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="com.sun.cms.web.exception.CMSException">error/error</prop>
+			</props>
+		</property>
+	</bean>
 </beans>  

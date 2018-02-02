@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sun.cms.model.PageDto;
+import com.sun.cms.web.auth.AuthClass;
+import com.sun.cms.web.auth.AuthMethod;
 import com.sun.cms.web.dto.RoleDto;
 import com.sun.cms.web.dto.SystemContext;
 import com.sun.cms.web.dto.UserDto;
@@ -20,11 +22,13 @@ import com.sun.cms.web.service.user.RoleService;
 
 @Controller
 @RequestMapping("/role")
+@AuthClass
 public class RoleController {
 	
 	@Autowired
 	RoleService roleService;
 	
+	@AuthMethod(role="admin")
 	@RequestMapping(value="/page")
 	public ModelAndView page(HttpServletRequest request,HttpServletResponse response) {
 		ModelAndView modelAndView =  new ModelAndView("role/list");
@@ -38,6 +42,8 @@ public class RoleController {
 		}
 		return modelAndView;
 	}
+	
+	@AuthMethod(role="admin")
 	@RequestMapping("/numbers")
 	public ModelAndView members(@RequestParam(value="roleid" , required=true)String roleid){
 		ModelAndView modelAndView = new ModelAndView("role/member");

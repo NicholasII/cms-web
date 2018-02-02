@@ -102,7 +102,20 @@
     <servlet-name>default</servlet-name>
     <url-pattern>*.JPG</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>InitServlet</servlet-name>
+  	<servlet-class>com.sun.cms.web.global.InitServlet</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
   <welcome-file-list>
     <welcome-file>/</welcome-file>
   </welcome-file-list>
+  <!-- <error-page>
+  	<error-code>404</error-code>
+  	<location>/WEB-INF/jsp/error/404.jsp</location>
+  </error-page>
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/WEB-INF/jsp/error/500.jsp</location>
+  </error-page> -->
 </web-app>

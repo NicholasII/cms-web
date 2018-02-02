@@ -18,6 +18,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sun.cms.model.PageDto;
+import com.sun.cms.web.auth.AuthClass;
+import com.sun.cms.web.auth.AuthMethod;
 import com.sun.cms.web.common.BaseController;
 import com.sun.cms.web.dto.GroupDto;
 import com.sun.cms.web.dto.SystemContext;
@@ -33,15 +35,16 @@ import com.sun.cms.web.utils.Constant;
 
 @Controller
 @RequestMapping("/group")
+@AuthClass
 public class GroupController extends BaseController<GroupDto>{
 	
 	@Autowired
 	GroupService groupService;
 	@Autowired
 	GroupChannelService groupChannelService;
-	
 	@Autowired
 	ChannelService channelService;
+	
 	/**
 	 * 分组页面-全部分组列表
 	 * dongqun
@@ -50,6 +53,7 @@ public class GroupController extends BaseController<GroupDto>{
 	 * @param response
 	 * @return
 	 */
+	@AuthMethod(role="admin")
 	@RequestMapping(value="/page")
 	public ModelAndView page(HttpServletRequest request,HttpServletResponse response) {
 		ModelAndView modelAndView =  new ModelAndView("group/list");
@@ -70,6 +74,7 @@ public class GroupController extends BaseController<GroupDto>{
 	 * @param groupId
 	 * @return
 	 */
+	@AuthMethod(role="admin")
 	@RequestMapping("/numbers")
 	public ModelAndView members(@RequestParam(value="groupid" , required=true)String groupId){
 		ModelAndView modelAndView = new ModelAndView("group/member");
@@ -91,6 +96,7 @@ public class GroupController extends BaseController<GroupDto>{
 	 * @param request
 	 * @return
 	 */
+	@AuthMethod(role="admin")
 	@RequestMapping("/addchannel/page")
 	public ModelAndView addChannlePage(HttpServletRequest request){
 		String groupid = request.getParameter("groupid");
@@ -127,6 +133,7 @@ public class GroupController extends BaseController<GroupDto>{
 	 * @param request
 	 * @return
 	 */
+	@AuthMethod(role="admin")
 	@RequestMapping("/bindChannel")
 	@ResponseBody
 	public ModelMap bindChannel(HttpServletRequest request){
@@ -147,6 +154,7 @@ public class GroupController extends BaseController<GroupDto>{
 	 * @param request
 	 * @return
 	 */
+	@AuthMethod(role="admin")
 	@RequestMapping("/deleteChannel")
 	@ResponseBody
 	public ModelMap deleteChannel(HttpServletRequest request){
@@ -167,6 +175,7 @@ public class GroupController extends BaseController<GroupDto>{
 	 * @param request
 	 * @return
 	 */
+	@AuthMethod(role="admin")
 	@RequestMapping("/getTree")
 	public ModelAndView getTree(HttpServletRequest request){
 		ModelAndView modelAndView = new ModelAndView("/group/channelTree");

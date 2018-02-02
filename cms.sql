@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2018-01-12 18:11:01
+Date: 2018-02-02 10:42:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -75,11 +75,9 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('admin', '超级管理员', 'admin', '05326435621', '15063932468', '2017-11-18 22:33:11', null, null, '1');
-INSERT INTO `sys_user` VALUES ('lisi', '李四', 'asdfgh123', '05324455668', '15263937899', '2017-12-10 10:11:41', null, null, '1');
-INSERT INTO `sys_user` VALUES ('weiweian', '小薇', '123456a', '32131332323', '32131233232', '2017-12-20 15:02:08', null, null, '1');
-INSERT INTO `sys_user` VALUES ('xiaobao', '文章发布人员', '三宝', '05326435622', '15063932468', '2017-11-23 22:51:31', null, null, '1');
-INSERT INTO `sys_user` VALUES ('zhangsan', '文章审核人员', '123', '05326435623', '15063932468', '2017-12-09 13:51:40', null, null, '1');
+INSERT INTO `sys_user` VALUES ('admin', '超级管理员', 'c33367701511b4f6020ec61ded352059', '05326435621', '15063932468', '2018-01-18 10:46:26', null, null, '1');
+INSERT INTO `sys_user` VALUES ('checkee', '文章审核人员1', '513106c051f94528f1d386926aa65e1a', '12345678909', '12345678900', '2018-02-01 17:28:02', null, null, '1');
+INSERT INTO `sys_user` VALUES ('dq', '毛泽东', 'e10adc3949ba59abbe56e057f20f883e', '12345678901', '12345678999', '2018-01-18 10:17:43', null, null, '0');
 
 -- ----------------------------
 -- Table structure for sys_user_group
@@ -87,18 +85,21 @@ INSERT INTO `sys_user` VALUES ('zhangsan', '文章审核人员', '123', '0532643
 DROP TABLE IF EXISTS `sys_user_group`;
 CREATE TABLE `sys_user_group` (
   `id` int(11) NOT NULL auto_increment,
-  `userid` varchar(255) default NULL,
-  `groupid` varchar(255) default NULL,
+  `userid` varchar(255) NOT NULL,
+  `groupid` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户-组织映射表';
 
 -- ----------------------------
 -- Records of sys_user_group
 -- ----------------------------
-INSERT INTO `sys_user_group` VALUES ('1', 'lisi', 'wlzx');
-INSERT INTO `sys_user_group` VALUES ('2', 'weiweian', 'cwc');
-INSERT INTO `sys_user_group` VALUES ('3', 'weiweian', 'xcb');
-INSERT INTO `sys_user_group` VALUES ('4', 'weiweian', 'wlzx');
+INSERT INTO `sys_user_group` VALUES ('11', 'dq', 'cwc');
+INSERT INTO `sys_user_group` VALUES ('12', 'dq', 'xcb');
+INSERT INTO `sys_user_group` VALUES ('13', 'dq', 'wlzx');
+INSERT INTO `sys_user_group` VALUES ('17', 'admin', 'cwc');
+INSERT INTO `sys_user_group` VALUES ('18', 'admin', 'xcb');
+INSERT INTO `sys_user_group` VALUES ('19', 'admin', 'wlzx');
+INSERT INTO `sys_user_group` VALUES ('20', 'checkee', 'cwc');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -114,11 +115,10 @@ CREATE TABLE `sys_user_role` (
 -- ----------------------------
 -- Records of sys_user_role
 -- ----------------------------
-INSERT INTO `sys_user_role` VALUES ('1', 'admin', 'admin');
-INSERT INTO `sys_user_role` VALUES ('2', 'lisi', 'articlechecker');
-INSERT INTO `sys_user_role` VALUES ('3', 'lisi', 'articlepublisher');
-INSERT INTO `sys_user_role` VALUES ('4', 'weiweian', 'articlechecker');
-INSERT INTO `sys_user_role` VALUES ('5', 'weiweian', 'articlepublisher');
+INSERT INTO `sys_user_role` VALUES ('25', 'dq', 'articlechecker');
+INSERT INTO `sys_user_role` VALUES ('26', 'dq', 'articlepublisher');
+INSERT INTO `sys_user_role` VALUES ('28', 'admin', 'admin');
+INSERT INTO `sys_user_role` VALUES ('29', 'checkee', 'articlechecker');
 
 -- ----------------------------
 -- Table structure for t_channel
@@ -159,6 +159,11 @@ INSERT INTO `t_channel` VALUES ('23', '11', '当天牛栏山', '0', '', '导航�
 INSERT INTO `t_channel` VALUES ('24', '11', '奥古斯丁打的', '0', '', '导航栏目', '0', '0', '0', '1', '3');
 INSERT INTO `t_channel` VALUES ('25', '12', '伟人遗篇', '0', '', '导航栏目', '0', '0', '0', '1', '2');
 INSERT INTO `t_channel` VALUES ('26', '12', '乌木前述', '0', '', '导航栏目', '0', '0', '0', '1', '3');
+INSERT INTO `t_channel` VALUES ('27', '12', '万景台风云', '0', '', '导航栏目', '0', '0', '0', '1', '4');
+INSERT INTO `t_channel` VALUES ('28', '0', '白头山风采', '0', '', '导航栏目', '0', '0', '0', '1', '5');
+INSERT INTO `t_channel` VALUES ('29', '28', '金大胖', '0', '', '文章列表栏目', '0', '0', '0', '1', '1');
+INSERT INTO `t_channel` VALUES ('30', '28', '金二胖', '0', '', '文章列表栏目', '0', '0', '0', '1', '2');
+INSERT INTO `t_channel` VALUES ('31', '28', '三胖统治世界', '0', '', '导航栏目', '0', '0', '0', '1', '3');
 
 -- ----------------------------
 -- Table structure for t_group_channel
@@ -178,15 +183,8 @@ CREATE TABLE `t_group_channel` (
 -- ----------------------------
 INSERT INTO `t_group_channel` VALUES ('1', '14', '9', '南海子居委会', 'cwc');
 INSERT INTO `t_group_channel` VALUES ('2', '9', '0', '政务公开', 'cwc');
-INSERT INTO `t_group_channel` VALUES ('3', '10', '0', '办事中心', 'wlzx');
-INSERT INTO `t_group_channel` VALUES ('4', '15', '10', '质检申请', 'wlzx');
 INSERT INTO `t_group_channel` VALUES ('5', '9', '0', '政务公开', 'wlzx');
 INSERT INTO `t_group_channel` VALUES ('6', '14', '9', '南海子居委会', 'wlzx');
-INSERT INTO `t_group_channel` VALUES ('7', '12', '0', '质检信息', 'wlzx');
-INSERT INTO `t_group_channel` VALUES ('8', '17', '12', '质监新闻', 'wlzx');
-INSERT INTO `t_group_channel` VALUES ('11', '21', '10', '头年大大', 'wlzx');
-INSERT INTO `t_group_channel` VALUES ('12', '11', '0', '互动查询', 'wlzx');
-INSERT INTO `t_group_channel` VALUES ('13', '24', '11', '奥古斯丁打的', 'wlzx');
 INSERT INTO `t_group_channel` VALUES ('14', '10', '0', '办事中心', 'cwc');
 INSERT INTO `t_group_channel` VALUES ('15', '15', '10', '质检申请', 'cwc');
 INSERT INTO `t_group_channel` VALUES ('16', '11', '0', '互动查询', 'cwc');
@@ -195,3 +193,7 @@ INSERT INTO `t_group_channel` VALUES ('18', '9', '0', '政务公开', 'xcb');
 INSERT INTO `t_group_channel` VALUES ('19', '14', '9', '南海子居委会', 'xcb');
 INSERT INTO `t_group_channel` VALUES ('20', '18', '9', '紫光阁大饭店', 'xcb');
 INSERT INTO `t_group_channel` VALUES ('21', '19', '9', '红旗日杂', 'xcb');
+INSERT INTO `t_group_channel` VALUES ('22', '28', '0', '白头山风采', 'wlzx');
+INSERT INTO `t_group_channel` VALUES ('23', '29', '28', '金大胖', 'wlzx');
+INSERT INTO `t_group_channel` VALUES ('24', '30', '28', '金二胖', 'wlzx');
+INSERT INTO `t_group_channel` VALUES ('25', '31', '28', '三胖统治世界', 'wlzx');

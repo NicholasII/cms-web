@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sun.cms.common.utils.Captcha;
 import com.sun.cms.common.utils.JSONUtil;
 import com.sun.cms.common.utils.SecurityUtil;
+import com.sun.cms.web.auth.AuthClass;
+import com.sun.cms.web.auth.AuthMethod;
 import com.sun.cms.web.dto.GroupDto;
 import com.sun.cms.web.dto.RoleDto;
 import com.sun.cms.web.dto.UserDto;
@@ -25,17 +27,20 @@ import com.sun.cms.web.service.user.UserService;
 import com.sun.cms.web.utils.Constant;
 @Controller
 @RequestMapping("/admin")
+@AuthClass
 public class AdminController {
 	
 	@Autowired
 	UserService userService;
 	
+	@AuthMethod
 	@RequestMapping("/navi")
 	public ModelAndView navi(){
 		return new ModelAndView("/admin/navi");
 	}
 	
 	@RequestMapping("/checkcode")
+	@AuthMethod
 	public void checkcode(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		HttpSession session = request.getSession();
 		Captcha captcha = Captcha.getInstance();
@@ -47,6 +52,7 @@ public class AdminController {
 		ImageIO.write(bi, "jpg", os);
 	}
 	
+	@AuthMethod
 	@RequestMapping("/user/updateSelf")
 	public ModelAndView updateSelf(HttpServletRequest request,HttpSession session){
 		ModelAndView modelAndView = new ModelAndView("/admin/update");
@@ -64,6 +70,7 @@ public class AdminController {
 		return modelAndView;
 	}
 	
+	@AuthMethod
 	@RequestMapping("/user/showSelf")
 	public ModelAndView showSelf(HttpServletRequest request,HttpSession session){
 		ModelAndView modelAndView = new ModelAndView("/admin/user");
@@ -80,13 +87,15 @@ public class AdminController {
 		}	
 		return modelAndView;
 	}
-	
+
+	@AuthMethod
 	@RequestMapping("/user/updatePwd/page")
 	public ModelAndView updatePwdPage(HttpServletRequest request){
 		ModelAndView modelAndView = new ModelAndView("/admin/password");
 		return modelAndView;
 	}
 	
+	@AuthMethod
 	@RequestMapping("/user/updatePwd")
 	public ModelAndView updatePwd(HttpServletRequest request,HttpSession session){
 		ModelAndView map = new ModelAndView("/admin/password");

@@ -18,6 +18,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.sun.cms.common.utils.JSONUtil;
 import com.sun.cms.common.utils.SecurityUtil;
 import com.sun.cms.model.PageDto;
+import com.sun.cms.web.auth.AuthClass;
+import com.sun.cms.web.auth.AuthMethod;
 import com.sun.cms.web.common.BaseController;
 import com.sun.cms.web.dto.GroupDto;
 import com.sun.cms.web.dto.RoleDto;
@@ -30,12 +32,14 @@ import com.sun.cms.web.utils.Constant;
 
 @Controller
 @RequestMapping("/user")
+@AuthClass
 public class UserController extends BaseController<UserDto>{
 	@Autowired
 	UserService userService;
 	@Autowired
 	UserChannelService userChannelService;
 	
+	@AuthMethod(role="admin")
 	@RequestMapping(value="/page")
 	public ModelAndView page(HttpServletRequest request,HttpServletResponse response) {
 		ModelAndView modelAndView =  new ModelAndView("user/list");
@@ -50,6 +54,7 @@ public class UserController extends BaseController<UserDto>{
 		return modelAndView;
 	}
 	
+	@AuthMethod(role="admin")
 	@RequestMapping("/list")
 	@ResponseBody
 	public ModelMap list(HttpServletRequest request){
@@ -62,12 +67,14 @@ public class UserController extends BaseController<UserDto>{
 		return map;
 	}
 	
+	@AuthMethod(role="admin")
 	@RequestMapping(value="/addpage")
 	public ModelAndView addpage(HttpServletRequest request,HttpServletResponse response) {
 		ModelAndView modelAndView =  new ModelAndView("user/add");
 		return modelAndView;
 	}
 	
+	@AuthMethod(role="admin")
 	@RequestMapping(value="/add")
 	public ModelAndView addUser(HttpServletRequest request,HttpServletResponse response) {
 		ModelAndView modelAndView =  new ModelAndView("user/add");
@@ -95,6 +102,8 @@ public class UserController extends BaseController<UserDto>{
 		modelAndView.addObject(Constant.SUCCESS, result);
 		return modelAndView;
 	}
+	
+	@AuthMethod(role="admin")
 	@RequestMapping("/havingChannel")
 	public ModelAndView havingChannel(HttpServletRequest request){
 		ModelAndView modelAndView = new ModelAndView("/user/channelTree");
@@ -107,6 +116,7 @@ public class UserController extends BaseController<UserDto>{
 		return modelAndView;
 	}
 	
+	@AuthMethod(role="admin")
 	@RequestMapping("/update/page")
 	public ModelAndView updatePage(HttpServletRequest request){
 		ModelAndView modelAndView = new ModelAndView("/user/update");
@@ -122,7 +132,7 @@ public class UserController extends BaseController<UserDto>{
 		return modelAndView;
 	}
 	
-	
+	@AuthMethod(role="admin")
 	@RequestMapping(value="/update")
 	public ModelAndView updateUser(HttpServletRequest request,HttpServletResponse response) {
 		

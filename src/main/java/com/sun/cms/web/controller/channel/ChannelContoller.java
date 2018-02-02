@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.sun.cms.model.PageDto;
+import com.sun.cms.web.auth.AuthClass;
+import com.sun.cms.web.auth.AuthMethod;
 import com.sun.cms.web.common.BaseController;
 import com.sun.cms.web.dto.SystemContext;
 import com.sun.cms.web.dto.channel.Channel;
@@ -24,6 +26,7 @@ import com.sun.cms.web.utils.Constant;
 
 @Controller
 @RequestMapping("/channel")
+@AuthClass
 public class ChannelContoller extends BaseController<Channel>{
 	
 	@Autowired
@@ -35,6 +38,7 @@ public class ChannelContoller extends BaseController<Channel>{
 	 * @return
 	 */
 	@RequestMapping("/page")
+	@AuthMethod(role="admin")
 	public ModelAndView page(@RequestParam(value="pid",defaultValue="null",required=true)String p_id,
 			@RequestParam(value="pname",defaultValue="null",required=true)String p_name) {
 		ModelAndView modelAndView = new ModelAndView("/channel/channel");
@@ -78,6 +82,7 @@ public class ChannelContoller extends BaseController<Channel>{
 	 * @throws UnsupportedEncodingException
 	 */
 	@RequestMapping("/addPage/{pid}")
+	@AuthMethod(role="admin")
 	public ModelAndView addPage(@PathVariable int pid,HttpServletRequest request) throws UnsupportedEncodingException{
 		ModelAndView modelAndView = new ModelAndView("/channel/add");
 		String pname = request.getParameter("pname");
@@ -93,6 +98,7 @@ public class ChannelContoller extends BaseController<Channel>{
 	 * @return
 	 */
 	@RequestMapping("/add")
+	@AuthMethod(role="admin")
 	public ModelAndView add(Channel channel){
 		ModelAndView modelAndView = new ModelAndView("/channel/add");
 		if (channel.getId()!=null) {
@@ -116,6 +122,7 @@ public class ChannelContoller extends BaseController<Channel>{
 	 * @return
 	 */
 	@RequestMapping("/delete/{id}/{pid}")
+	@AuthMethod(role="admin")
 	private ModelAndView delete(@PathVariable int id,@PathVariable int pid){
 		Channel c = new Channel();
 		c.setPid(id);
@@ -151,6 +158,7 @@ public class ChannelContoller extends BaseController<Channel>{
 	 * @return
 	 */
 	@RequestMapping("/update/{id}")
+	@AuthMethod(role="admin")
 	public ModelAndView updateChannel(@PathVariable int id){
 		ModelAndView modelAndView = new ModelAndView("/channel/update");
 		Channel channel = new Channel();
@@ -172,6 +180,7 @@ public class ChannelContoller extends BaseController<Channel>{
 	 * @return
 	 */
 	@RequestMapping("/update")
+	@AuthMethod(role="admin")
 	public ModelAndView update(Channel channel){
 		ModelAndView modelAndView = new ModelAndView("/channel/update");
 		if (channel.getId()!=null) {
