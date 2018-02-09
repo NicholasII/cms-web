@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+.a_link{
+	color: white;
+	float:right;
+	padding-right: 10px;
+	text-decoration: none;
+}
+.link_bar{
+	width: 100%;
+	height: 28px;
+	background:url("/cms-web/resources/img/nav_title_bg.png") repeat-x;
+}
+/* -------------------------内容--------------------------- */
+#subcontent{
+	border: 1px solid gray;
+	text-align: center;
+}
+#tableform{
+	margin-top: 20px;
+}
+
+table {
+	padding:15px 10px 5px 10px;
+	font-size:12px;
+	border-top:1px solid #999;
+	border-left:1px solid #999;
+	padding:0px;
+}
+table tr td {
+	padding:6px;
+	padding-right:0px;
+	border-right:1px solid #999;
+	border-bottom:1px solid #999;
+}
+table thead td{
+	background:#336d9b;
+	color:#fff;
+	margin:0px;
+}
+td.leftCol{
+	text-align: right;
+}
+td.rightCol{
+	text-align: left;
+}

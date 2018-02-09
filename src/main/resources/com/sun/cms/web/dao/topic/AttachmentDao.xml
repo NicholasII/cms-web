@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sun.cms.web.dao.topic.AttachmentDao">
+  <resultMap id="BaseResultMap" type="com.sun.cms.web.dto.topic.AttachmentDto">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="topicid" jdbcType="VARCHAR" property="topicid" />
+    <result column="newName" jdbcType="VARCHAR" property="newname" />
+    <result column="oldName" jdbcType="VARCHAR" property="oldname" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="suffix" jdbcType="VARCHAR" property="suffix" />
+    <result column="size" jdbcType="BIGINT" property="size" />
+    <result column="isIndexPic" jdbcType="INTEGER" property="isindexpic" />
+    <result column="isImg" jdbcType="VARCHAR" property="isimg" />
+    <result column="isAttach" jdbcType="VARCHAR" property="isattach" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, topicid, newName, oldName, type, suffix, size, isIndexPic, isImg, isAttach
+  </sql>
+  <select id="select" parameterType="com.sun.cms.web.dto.topic.AttachmentDto" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_attachment
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="com.sun.cms.web.dto.topic.AttachmentDto">
+    delete from t_attachment
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sun.cms.web.dto.topic.AttachmentDto">
+    insert into t_attachment (id, topicid, newName, 
+      oldName, type, suffix, 
+      size, isIndexPic, isImg, 
+      isAttach)
+    values (#{id,jdbcType=VARCHAR}, #{topicid,jdbcType=VARCHAR}, #{newname,jdbcType=VARCHAR}, 
+      #{oldname,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{suffix,jdbcType=VARCHAR}, 
+      #{size,jdbcType=BIGINT}, #{isindexpic,jdbcType=INTEGER}, #{isimg,jdbcType=VARCHAR}, 
+      #{isattach,jdbcType=VARCHAR})
+  </insert>
+  <update id="update" parameterType="com.sun.cms.web.dto.topic.AttachmentDto">
+    update t_attachment
+    <set>
+      <if test="topicid != null">
+        topicid = #{topicid,jdbcType=VARCHAR},
+      </if>
+      <if test="newname != null">
+        newName = #{newname,jdbcType=VARCHAR},
+      </if>
+      <if test="oldname != null">
+        oldName = #{oldname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="suffix != null">
+        suffix = #{suffix,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=BIGINT},
+      </if>
+      <if test="isindexpic != null">
+        isIndexPic = #{isindexpic,jdbcType=INTEGER},
+      </if>
+      <if test="isimg != null">
+        isImg = #{isimg,jdbcType=VARCHAR},
+      </if>
+      <if test="isattach != null">
+        isAttach = #{isattach,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

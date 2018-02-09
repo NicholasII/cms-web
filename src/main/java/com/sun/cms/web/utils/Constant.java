@@ -14,4 +14,5 @@ public class Constant {
 	public static final int ROOT_ID = 0;
 	public static final String RESULT_REASION = "reasion";
 	public static final String CHECKCODE = "checkcode";
+	public static final String ROWS = "rows";
 }

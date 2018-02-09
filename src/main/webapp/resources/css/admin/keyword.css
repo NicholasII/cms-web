@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+#keyward-container{
+	border: 1px solid #bbb;
+	width: 400px;
+}
+#keyward-wrap{
+	
+}
+input.keyward-input{
+	border:none;
+	width:298px;
+	color:#aaa;
+	height:28px;
+}
+input.keyward-input:FOCUS{
+	border:none;
+}
+div.keyward-in{
+	float:left;
+	background:blue;
+	color: white;
+	padding: 3px;
+	margin: 3px;
+}
+a.keyward-shut{
+	text-decoration:none;
+	color:yellow;
+}
+a.keyward-shut:LINK,a.keyward-shut:VISITED {
+	margin-left:3px;
+	color:#fff;
+	text-decoration:none;
+}
+a.keyward-shut:HOVER {
+	color: yellow;
+}
