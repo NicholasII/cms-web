@@ -59,6 +59,7 @@
 			<mvc:mapping path="/group/**"/>
 			<mvc:mapping path="/role/**"/>
 			<mvc:mapping path="/channel/**"/>
+			<mvc:mapping path="/topic/**"/>
 			<bean class="com.sun.cms.web.filter.AuthInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

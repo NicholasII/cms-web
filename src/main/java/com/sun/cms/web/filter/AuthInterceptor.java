@@ -22,6 +22,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		HandlerMethod hm  = (HandlerMethod)handler;
 		if (userDto==null) {
 			response.sendRedirect(request.getContextPath()+"/");
+			return false;
 		}else{
 			//如果是管理员，不加限制
 			//其他用户：如果没有权限统一返回一个无权限的页面

@@ -16,6 +16,9 @@
 <!-- xheditor -->
 <script type="text/javascript" src="${context}/resources/lib/xheditor-1.2.2/xheditor-1.2.2.min.js"></script>
 <script type="text/javascript" src="${context}/resources/lib/xheditor-1.2.2/xheditor_lang/zh-cn.js"></script>
+<!-- uploadify -->
+<link rel="stylesheet" type = "text/css" href="${context}/resources/lib/uploadify/uploadify.css">
+<script type="text/javascript" src="${context}/resources/lib/uploadify/jquery.uploadify.min.js"></script>
 <!-- 自定义css -->
 <link rel="stylesheet" type="text/css" href="${context}/resources/css/admin/keyword.css">
 <%-- <link rel="stylesheet" type="text/css" href="${context}/resources/css/user/main.css"> --%>
@@ -72,14 +75,18 @@
 				</tr>
 				<tr>
 					<td class="leftCol">文章附件</td>
-					<td class="rightCol"><input id="" name="" type="file" placeholder="请选择文件"></td>
+					<td class="rightCol">
+						<input id="file_upload" name="file_upload" type="file" placeholder="请选择文件">
+						<input type="button" id="uploadFile" value="上传文件"/>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="3">已传附件</td>
 				</tr>
 				<tr>
-					<td colspan="3">
-						<!-- <table>
+					<td colspan="3" style="text-align: center;">
+						<table style="width: 100%; margin: 0px; padding: 0px;">
+							<thead style="background: #336d9b; color: white;">
 								<tr>
 									<th>文件名略缩图</th>
 									<th>文件名</th>
@@ -89,7 +96,37 @@
 									<th>附件信息</th>
 									<th>操作</th>
 								</tr>
-						</table> -->
+							</thead>
+							<tbody>
+								<tr>
+									<td>文件名略缩图</td>
+									<td>文件名</td>
+									<td>文件大小</td>
+									<td>主页图片</td>
+									<td>栏目图片</td>
+									<td>附件信息</td>
+									<td>操作</td>
+								</tr>
+								<tr>
+									<td>文件名略缩图</td>
+									<td>文件名</td>
+									<td>文件大小</td>
+									<td>主页图片</td>
+									<td>栏目图片</td>
+									<td>附件信息</td>
+									<td>操作</td>
+								</tr>
+								<tr>
+									<td>文件名略缩图</td>
+									<td>文件名</td>
+									<td>文件大小</td>
+									<td>主页图片</td>
+									<td>栏目图片</td>
+									<td>附件信息</td>
+									<td>操作</td>
+								</tr>
+							</tbody>
+						</table>
 					</td>
 				</tr>
 				<tr>

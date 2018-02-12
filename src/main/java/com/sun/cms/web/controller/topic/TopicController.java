@@ -10,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
@@ -105,4 +108,20 @@ public class TopicController extends BaseController<TopicDto>{
 		map.addAttribute(Constant.ROWS, pageDto);
 		return map;
 	}
+	@AuthMethod(role="articlepublisher")
+	@RequestMapping("/upload")
+	@ResponseBody
+	public ModelMap uploadFile(MultipartFile file,HttpServletRequest request){
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+		MultipartHttpServletRequest mutiRequest = (MultipartHttpServletRequest) request;
+		MultipartFile file2 = mutiRequest.getFile("attach");
+		System.out.println(file2.getOriginalFilename());
+		ModelMap map = new ModelMap();
+		map.addAttribute("fileOriginalName", file2.getOriginalFilename());
+		map.addAttribute("fileSize", file2.getSize());
+		map.addAttribute("fileType", file2.getContentType());
+		map.addAttribute("fileName", file2.getName());
+		return map;
+	}
+	
 }

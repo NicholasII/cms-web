@@ -25,6 +25,25 @@ $(document).ready(function() {
 			source: ctx + "/topic/keyword/allkey"
 		}
 	});	
+	$("#file_upload").uploadify({
+		'auto':false,
+		'swf' : '/cms-web/resources/lib/uploadify/uploadify.swf',
+		'uploader' : '/cms-web/topic/upload',
+		'method' : 'post',
+		'fileObjName' : 'attach',
+		'fileTypeExts':"*.jpg;*.gif;*.png;*.doc;*.docx;*.txt;*.xls;*.xlsx;*.rar;*.zip;*.pdf;*.flv;*.swf",
+		'onUploadSuccess' : function(file, data, response) {
+            alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
+        }
+	});
+	
+	function createAttachNode() {
+		
+	}
+	
+	$("#uploadFile").click(function() {
+		$("#file_upload").uploadify("upload","*");
+	})
 });
 function beforeClick(treeId, treeNode) {
 	var check = (treeNode && !treeNode.isParent);
