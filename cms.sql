@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2018-02-02 10:42:44
+Date: 2018-02-24 17:53:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,6 +34,7 @@ CREATE TABLE `sys_group` (
 INSERT INTO `sys_group` VALUES ('cwc', '财务处', '管财务的', '2017-12-10 10:14:21', null);
 INSERT INTO `sys_group` VALUES ('wlzx', '网络中心', '搞网线的', '2017-12-10 10:15:45', null);
 INSERT INTO `sys_group` VALUES ('xcb', '宣传部', '负责宣传工作', '2017-12-10 10:15:19', null);
+INSERT INTO `sys_group` VALUES ('zxc', '政训处', '负责意识形态', '2018-02-06 18:01:31', null);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -121,6 +122,32 @@ INSERT INTO `sys_user_role` VALUES ('28', 'admin', 'admin');
 INSERT INTO `sys_user_role` VALUES ('29', 'checkee', 'articlechecker');
 
 -- ----------------------------
+-- Table structure for t_attachment
+-- ----------------------------
+DROP TABLE IF EXISTS `t_attachment`;
+CREATE TABLE `t_attachment` (
+  `id` varchar(255) NOT NULL,
+  `topicid` varchar(255) default NULL,
+  `newName` varchar(255) default NULL,
+  `oldName` varchar(255) default NULL,
+  `type` varchar(255) default NULL,
+  `suffix` varchar(255) default NULL,
+  `size` bigint(20) default NULL,
+  `isIndexPic` int(11) default NULL,
+  `isImg` int(255) default NULL,
+  `isAttach` int(255) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `topicid` (`topicid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_attachment
+-- ----------------------------
+INSERT INTO `t_attachment` VALUES ('25e39ac7b665483ab86a97097ea8609a', '6bcf60f1d4ca4804a6d9f38d1facf16f', '1519461115480.jpg', 'data_page_background', 'application/octet-stream', 'jpg', '76106', '0', '1', '1');
+INSERT INTO `t_attachment` VALUES ('a3823ac605cd40d1929cf759fc4d856c', 'd350e1d08ea649328da9bdc08c81fb20', '1519465162011.jpg', 'bg_record_bg', 'application/octet-stream', 'jpg', '101294', '0', '1', '1');
+INSERT INTO `t_attachment` VALUES ('dca71af64a484a57bc09247202f8a048', 'd350e1d08ea649328da9bdc08c81fb20', '1519465162264.jpg', 'data_page_background', 'application/octet-stream', 'jpg', '76106', '0', '1', '1');
+
+-- ----------------------------
 -- Table structure for t_channel
 -- ----------------------------
 DROP TABLE IF EXISTS `t_channel`;
@@ -176,7 +203,7 @@ CREATE TABLE `t_group_channel` (
   `channelname` varchar(255) NOT NULL,
   `groupid` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='栏目分组映射表';
 
 -- ----------------------------
 -- Records of t_group_channel
@@ -197,3 +224,50 @@ INSERT INTO `t_group_channel` VALUES ('22', '28', '0', '白头山风采', 'wlzx'
 INSERT INTO `t_group_channel` VALUES ('23', '29', '28', '金大胖', 'wlzx');
 INSERT INTO `t_group_channel` VALUES ('24', '30', '28', '金二胖', 'wlzx');
 INSERT INTO `t_group_channel` VALUES ('25', '31', '28', '三胖统治世界', 'wlzx');
+
+-- ----------------------------
+-- Table structure for t_keyword
+-- ----------------------------
+DROP TABLE IF EXISTS `t_keyword`;
+CREATE TABLE `t_keyword` (
+  `id` int(11) NOT NULL auto_increment COMMENT '关键字的id',
+  `name` varchar(60) default NULL COMMENT '关键字的名称',
+  `times` int(11) default NULL COMMENT '被引用的次数',
+  `nameFullPy` varchar(255) default NULL COMMENT '关键字的全拼',
+  `nameShortPy` varchar(255) default NULL COMMENT '关键字的简拼',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章关键字';
+
+-- ----------------------------
+-- Records of t_keyword
+-- ----------------------------
+INSERT INTO `t_keyword` VALUES ('1', 'asc', '2', 'asc', null);
+INSERT INTO `t_keyword` VALUES ('2', 'sdad', '1', 'sdad', null);
+INSERT INTO `t_keyword` VALUES ('3', 'asfg', '5', 'asfg', null);
+
+-- ----------------------------
+-- Table structure for t_topic
+-- ----------------------------
+DROP TABLE IF EXISTS `t_topic`;
+CREATE TABLE `t_topic` (
+  `id` varchar(64) NOT NULL COMMENT 'uuid',
+  `title` varchar(16) default NULL COMMENT '文章标题',
+  `keyward` varchar(255) default NULL COMMENT '关键字集合',
+  `status` int(255) default NULL COMMENT '文章的状态：0表示未发布1表示发布',
+  `recommend` int(255) default NULL COMMENT '是否是推荐文章：0是不推荐1是推荐',
+  `publishdate` datetime default NULL COMMENT '发布时间',
+  `channelname` varchar(255) default NULL COMMENT '所属栏目',
+  `channelid` int(11) default NULL COMMENT '所属栏目id',
+  `publisher` varchar(255) default NULL COMMENT '发布人员',
+  `publisherid` varchar(255) default NULL COMMENT '发布人员id',
+  `content` text COMMENT '文章内容',
+  `summary` text COMMENT '文章摘要',
+  `channelPicId` varchar(255) default NULL COMMENT '栏目图片id，如果该栏目是图片类型的栏目，就会显示这个id的图片',
+  `createdate` datetime default NULL COMMENT '文章创建时间',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章表';
+
+-- ----------------------------
+-- Records of t_topic
+-- ----------------------------
+INSERT INTO `t_topic` VALUES ('d350e1d08ea649328da9bdc08c81fb20', '诸城市第一中学', '平米毛坯|热腾腾|切尔奇翁', '1', '0', '2018-02-24 17:41:08', '金大胖', '29', '超级管理员', 'admin', '<h1 style=\"text-align: center;\">诸城一中校歌</h1><div style=\"text-align: center;\">带着微笑</div><div style=\"text-align: center;\">带着希望</div><div style=\"text-align: center;\">来到美丽的龙源</div>', '全体鼓掌解散', null, '2017-09-05 00:00:00');
