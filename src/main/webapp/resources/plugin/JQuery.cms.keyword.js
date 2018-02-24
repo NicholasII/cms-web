@@ -17,19 +17,34 @@
 		        minLength: opts.autocomplete.minLength
 		    });
 		}
+		/**
+		 * 通过事件委派处理
+		 */
+		$("#keyward-wrap").on("click","a.keyward-shut",function(event){
+			$(this).parent(".keyward-in").remove();
+			event.preventDefault();
+		});
+		
+		
 		function inputKeyword(event){
 			var code = event.keyCode;
-			if(code==13 || code==188){
+			if(code==13 || code==188){	
 				var key = $(this).val();
-				if($(".keyward-in").length>=opts.num){
-					alert("最多只能添加"+opts.num+"个关键字！");
+				if (key!="" && key!=null) {
+					if($(".keyward-in").length>=opts.num){
+						alert("最多只能添加"+opts.num+"个关键字！");
+						event.preventDefault();
+						return;
+					}
+					var node = createKeywordNode(key);
+					$("#keyward-wrap").append(node);
+					$(this).val("");
 					event.preventDefault();
-					return;
+				}else {
+					alert("请输入内容！");
+					event.preventDefault();
 				}
-				var node = createKeywordNode(key);
-				$("#keyward-wrap").append(node);
-				$(this).val("");
-				event.preventDefault();
+				
 			}
 		}
 		function init(element) {
@@ -47,6 +62,7 @@
 		function createKeywordNode(value){
 			return '<div class="keyward-in"><span>'+value+'</span><a href="#" class="keyward-shut">x</a><input type="hidden" name="keyward" value="'+value+'"></div>';
 		}
+
 	}
 	
 	

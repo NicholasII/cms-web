@@ -12,7 +12,7 @@
     <result column="channelid" jdbcType="INTEGER" property="channelid" />
     <result column="publisher" jdbcType="VARCHAR" property="publisher" />
     <result column="publisherid" jdbcType="VARCHAR" property="publisherid" />
-    <result column="channelPicId" jdbcType="INTEGER" property="channelpicid" />
+    <result column="channelPicId" jdbcType="VARCHAR" property="channelpicid" />
     <result column="createdate" jdbcType="TIMESTAMP" property="createdate" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
     <result column="summary" jdbcType="LONGVARCHAR" property="summary" />
@@ -41,7 +41,11 @@
     		keyward like #{keyward}
     	</if>
     </where>
-   
+  </select>
+  <select id="selectOne" parameterType="com.sun.cms.web.dto.topic.TopicDto" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_topic where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="delete" parameterType="com.sun.cms.web.dto.topic.TopicDto">
     delete from t_topic
@@ -56,7 +60,7 @@
     values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{keyward,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{recommend,jdbcType=INTEGER}, #{publishdate,jdbcType=TIMESTAMP}, 
       #{channelname,jdbcType=VARCHAR}, #{channelid,jdbcType=INTEGER}, #{publisher,jdbcType=VARCHAR}, 
-      #{publisherid,jdbcType=VARCHAR}, #{channelpicid,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{publisherid,jdbcType=VARCHAR}, #{channelpicid,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
       #{content,jdbcType=LONGVARCHAR}, #{summary,jdbcType=LONGVARCHAR})
   </insert>
   <update id="update" parameterType="com.sun.cms.web.dto.topic.TopicDto">
@@ -90,7 +94,7 @@
         publisherid = #{publisherid,jdbcType=VARCHAR},
       </if>
       <if test="channelpicid != null">
-        channelPicId = #{channelpicid,jdbcType=INTEGER},
+        channelPicId = #{channelpicid,jdbcType=VARCHAR},
       </if>
       <if test="createdate != null">
         createdate = #{createdate,jdbcType=TIMESTAMP},

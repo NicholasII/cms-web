@@ -10,6 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
+import javax.servlet.http.HttpServletRequest;
 
 import com.sun.cms.web.dto.SystemContext;
 
@@ -35,15 +36,17 @@ public class PageFilter implements Filter {
 		Integer currPage = 1;
 		
 	    try {
-			currPage = Integer.valueOf(request.getParameter("pager.offset"))+1;
+			currPage = Integer.valueOf(request.getParameter("pager.offset"))/pageSize+1;
 		} catch (NumberFormatException e) {}
 		try {
 			SystemContext.setPageSize(pageSize);
 			SystemContext.setPageOffset(currPage);
+			SystemContext.setRealPath(((HttpServletRequest)request).getSession().getServletContext().getRealPath("/"));
 			chain.doFilter(request, response);
 		} finally {
 			SystemContext.removePageOffset();
 			SystemContext.removePageSize();
+			SystemContext.removeRealPath();
 		}
 				
 		

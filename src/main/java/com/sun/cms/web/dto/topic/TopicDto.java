@@ -28,7 +28,7 @@ public class TopicDto extends BaseDto{
 
     private String publisherid;
 
-    private Integer channelpicid;
+    private String channelpicid;
 
     private Date createdate;
     
@@ -116,11 +116,11 @@ public class TopicDto extends BaseDto{
         this.publisherid = publisherid == null ? null : publisherid.trim();
     }
 
-    public Integer getChannelpicid() {
+    public String getChannelpicid() {
         return channelpicid;
     }
 
-    public void setChannelpicid(Integer channelpicid) {
+    public void setChannelpicid(String channelpicid) {
         this.channelpicid = channelpicid;
     }
 

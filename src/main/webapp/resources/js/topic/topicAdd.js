@@ -33,12 +33,40 @@ $(document).ready(function() {
 		'fileObjName' : 'attach',
 		'fileTypeExts':"*.jpg;*.gif;*.png;*.doc;*.docx;*.txt;*.xls;*.xlsx;*.rar;*.zip;*.pdf;*.flv;*.swf",
 		'onUploadSuccess' : function(file, data, response) {
-            alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
+			var result = eval("("+data+")");
+			if (result.status) {  
+				createAttachNode(result.attach);
+			}
         }
 	});
 	
-	function createAttachNode() {
-		
+	function createAttachNode(attach) {
+		var rows = $("<tr><input name='attachments' type='hidden' value="+ attach.id +"></tr>");
+		var fileImg;
+		var imgUrl = ctx + "/resources/upload/thumbnail/" + attach.newname;
+		var indexImg,channelImg;
+		if (attach.isimg==1) {
+			fileImg=$("<td><img src="+imgUrl+"></td>");
+			indexImg = $("<td><input type='checkbox' value="+ attach.id +"></td>");
+			channelImg = $("<td><input type='radio' name='channelpicid' value="+ attach.id +"></td>");
+		}else {
+			fileImg = $("<td>普通附件类型</td>");
+			indexImg = $("<td>普通附件类型</td>");
+			channelImg = $("<td>普通附件类型</td>");
+		}
+		rows.append(fileImg);
+		var fileName = $("<td>"+attach.newname+"</td>");
+		rows.append(fileName);
+		var fileSize = $("<td>"+attach.size+"</td>");
+		rows.append(fileSize);
+		rows.append(indexImg);
+		rows.append(channelImg);
+		var attachment = $("<td><input type='checkbox' value="+ attach.id +"></td>");
+		rows.append(attachment);
+		var operate = $("<td><a href='#' class='a_button'>删除附件</a>&nbsp;&nbsp;<a href='#' class='a_button'>插入到文章</a></td>");
+		rows.append(operate);
+		$("#attach_info").append(rows);
+									
 	}
 	
 	$("#uploadFile").click(function() {

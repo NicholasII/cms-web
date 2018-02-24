@@ -29,7 +29,7 @@ $(function(){
 				<span class="navTilteTxt">文章管理</span>
 			</h3>
 			<li><i class="icon"></i><a href="${context}/channel/page" target="content">栏目信息管理</a></li>
-			<li><i class="icon"></i><a href="${context}/topic/addPage" target="content">文章信息管理</a></li>
+			<li><i class="icon"></i><a href="${context}/topic/list" target="content">文章信息管理</a></li>
 
 		</ul>
 		<ul class="navMenu">

@@ -18,6 +18,10 @@ public class SystemContext {
 	 * 列表的排序方式
 	 */
 	//private static ThreadLocal<String> order = new ThreadLocal<String>();
+	/**
+	 * web应用的真实路径
+	 */
+	private static ThreadLocal<String> realPath = new ThreadLocal<String>();
 	
 	
 	public static Integer getPageSize() {
@@ -43,5 +47,16 @@ public class SystemContext {
 	public static void removePageOffset() {
 		pageOffset.remove();
 	}
+
+	public static String getRealPath() {
+		return realPath.get();
+	}
+
+	public static void setRealPath(String path) {
+		realPath.set(path);
+	}
 	
+	public static void removeRealPath(){
+		realPath.remove();
+	}
 }

@@ -22,9 +22,9 @@ public class AttachmentDto extends BaseDto{
 
     private Integer isindexpic;
 
-    private String isimg;
+    private Integer isimg;
 
-    private String isattach;
+    private Integer isattach;
 
     public String getId() {
         return id;
@@ -90,19 +90,19 @@ public class AttachmentDto extends BaseDto{
         this.isindexpic = isindexpic;
     }
 
-    public String getIsimg() {
+    public Integer getIsimg() {
         return isimg;
     }
 
-    public void setIsimg(String isimg) {
-        this.isimg = isimg == null ? null : isimg.trim();
+    public void setIsimg(Integer isimg) {
+        this.isimg = isimg;
     }
 
-    public String getIsattach() {
+    public Integer getIsattach() {
         return isattach;
     }
 
-    public void setIsattach(String isattach) {
-        this.isattach = isattach == null ? null : isattach.trim();
+    public void setIsattach(Integer isattach) {
+        this.isattach = isattach;
     }
 }

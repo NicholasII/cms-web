@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="/common/import.jsp"%>
-<title>添加文章</title>
+<title>更新文章</title>
 <!-- ztree -->
 <link rel="stylesheet" href="${context}/resources/lib/ZTree/css/demo.css" type="text/css">
 <link rel="stylesheet" href="${context}/resources/lib/ZTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
@@ -21,15 +21,17 @@
 <script type="text/javascript" src="${context}/resources/lib/uploadify/jquery.uploadify.min.js"></script>
 <!-- 自定义css -->
 <link rel="stylesheet" type="text/css" href="${context}/resources/css/admin/keyword.css">
-<%-- <link rel="stylesheet" type="text/css" href="${context}/resources/css/user/main.css"> --%>
 <link rel="stylesheet" type="text/css" href="${context}/resources/css/topic/topic.css">
 <link rel="stylesheet" type="text/css" href="${context}/resources/css/admin/common.css">
 <!-- 自定义js -->
 <script type="text/javascript" src="${context}/resources/plugin/JQuery.cms.core.js"></script>
 <script type="text/javascript" src="${context}/resources/plugin/JQuery.cms.keyword.js"></script>
 <script type="text/javascript" src="${context}/resources/js/topic/topicAdd.js"></script>
+<script type="text/javascript" src="${context}/resources/js/topic/topicUpdate.js"></script>
 <script type="text/javascript">
 	var havingTree = ${tree};
+	var topic = ${topic};
+	var attachments = ${attachment};
 	$(function(){
 		$("#createdate").datepicker();
 	});
@@ -37,14 +39,15 @@
 </head>
 <body>
 	<div class="link_bar">
-		<span><a href="#" class="a_link">添加文章功能</a></span>
+		<span><a href="#" class="a_link">更新文章功能</a></span>
 	</div>
 	<div id="subcontent">
-		<form id="tableform" action="/cms-web/topic/add" method="post">
+		<form id="tableform" action="/cms-web/topic/updateContent" method="post">
 			<table>
 				<tr>
 					<td class="leftCol">文章标题</td>
-					<td class="rightCol"><input id="title" name="title" type="text"></td>
+					<td class="rightCol"><input id="id" name="id" type="hidden">
+					<input id="title" name="title" type="text"></td>
 				</tr>
 				<tr>
 					<td class="leftCol">文章栏目</td>
@@ -121,7 +124,7 @@
 							name="summary"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan="3"><button id="add">添加文章</button><input type="reset" value="重置"></td>
+					<td colspan="3"><button id="add">修改文章</button>&nbsp;<input type="reset" value="重置"></td>
 				</tr>
 			</table>
 		</form>
