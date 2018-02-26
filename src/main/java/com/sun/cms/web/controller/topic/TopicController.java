@@ -35,6 +35,7 @@ import com.sun.cms.web.dto.topic.AttachmentDto;
 import com.sun.cms.web.dto.topic.TopicDto;
 import com.sun.cms.web.service.channel.UserChannelService;
 import com.sun.cms.web.service.topic.AttachService;
+import com.sun.cms.web.service.topic.KeywordService;
 import com.sun.cms.web.service.topic.TopicService;
 import com.sun.cms.web.utils.CommonUtils;
 @Controller
@@ -47,6 +48,8 @@ public class TopicController extends BaseController<TopicDto>{
 	UserChannelService userChannelService;
 	@Autowired
 	AttachService attachService;
+	@Autowired
+	KeywordService keywordService;
 	//图片附件的类型
 	private final static List<String> imgTypes = Arrays.asList("jpg","jpeg","gif","png");
 	
@@ -78,8 +81,9 @@ public class TopicController extends BaseController<TopicDto>{
 	public ModelAndView list(HttpServletRequest request){
 		ModelAndView modelAndView = new ModelAndView("topic/list");
 		String title = request.getParameter("title");
-		String keyward = request.getParameter("keyward");
+		String keyward = request.getParameter("keyword");
 		String isPublish = request.getParameter("ispublish");
+		String channelid = request.getParameter("channel");
 		TopicDto topic = new TopicDto();
 		if (CommonUtils.isEmpty(title)) {
 			topic.setTitle(title);
@@ -89,6 +93,9 @@ public class TopicController extends BaseController<TopicDto>{
 		}
 		if (CommonUtils.isEmpty(isPublish)) {
 			topic.setStatus(Integer.valueOf(isPublish));
+		}
+		if (CommonUtils.isEmpty(channelid)) {
+			topic.setChannelid(Integer.valueOf(channelid));
 		}
 		Integer pageNum = SystemContext.getPageOffset();
 		Integer pageSize = SystemContext.getPageSize();
@@ -167,9 +174,12 @@ public class TopicController extends BaseController<TopicDto>{
 				topic.setChannelpicid(channelpicid);
 			}
 			result = topicService.insert(topic);
-			if (attachs!=null&&attachs.length>0) {
+			if (attachs!=null && attachs.length>0) {
 				attachService.bindTopic(attachs, topicId);
 			}	
+			if (keyward!=null && keyward.length>0) {
+				keywordService.addKeyword(keyward);
+			}
 			if (result) {
 				modelAndView = new ModelAndView("redirect:/topic/list");
 			}else {

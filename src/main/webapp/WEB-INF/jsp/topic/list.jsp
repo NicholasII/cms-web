@@ -11,26 +11,7 @@
 <script type="text/javascript" src="${context}/resources/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${context}/resources/css/topic/topic.css">
 <link rel="stylesheet" type="text/css" href="${context}/resources/css/admin/common.css">
-<script type="text/javascript">	
-	function deleteTopic(topicid) {
-		$("#dialog-confirm").dialog({
-			resizable : false,
-			height : "auto",
-			width : 400,
-			modal : true,
-			buttons : {
-				"删除" : function() {
-					$(this).dialog("close");
-					var url = ctx + "/topic/deleteTopic/"+topicid;
-					formSubmit(url,[]);
-				},
-				"取消" : function() {
-					$(this).dialog("close");
-				}
-			}
-		});
-	}
-</script>
+<script type="text/javascript" src="${context}/resources/js/topic/list.js"></script>
 </head>
 <body>
 	<div id="content">
@@ -41,7 +22,12 @@
 			<thead>
 				<tr>
 					<td colspan="6">
-						<label>搜索文章</label><input type="text" id="topictitle"><label>关键字</label><input type="text" id="topickey"><input type="button" id="search" value="搜索文章"/>
+						<label>搜索文章</label><input type="text" id="topictitle">
+						<select id="search">
+							<option value="-1">选择栏目</option>
+						</select>
+						<label>关键字</label><input type="text" id="topickey">
+						<input type="button" id="search" value="搜索文章" onclick="searchTopic()"/>
 					</td>
 				</tr>
 				<tr>
@@ -98,7 +84,6 @@
 	</div>
 </body>
 <div id="dialog-confirm" title="是否删除文章?" style="display: none;">
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>点击确定删除文章，是否要删除?</p>
+  	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>点击确定删除文章，是否要删除?</p>
 </div>
-
 </html>

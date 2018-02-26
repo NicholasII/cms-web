@@ -34,11 +34,15 @@
     		<bind name="title" value="'%'+ _parameter.getTitle()+'%'"/>
     		title like #{title}
     	</if>
+    	<if test="channelid != null">
+    		channelid = #{channelid}
+    	</if>
     	<if test="status != null">
     		status = #{status}
     	</if>
     	<if test="keyward != null">
-    		keyward like #{keyward}
+    		<bind name="keyward" value="'%'+ _parameter.getKeyward+'%'"/>
+    			keyward like #{keyward}
     	</if>
     </where>
   </select>

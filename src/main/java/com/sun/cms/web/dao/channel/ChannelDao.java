@@ -7,5 +7,8 @@ import com.sun.cms.web.dto.channel.Channel;
 import com.sun.cms.web.dto.channel.ChannelTree;
 
 public interface ChannelDao extends BaseDao<Channel> {
+	
 	List<ChannelTree> selectSubTree(Integer pid);
+	
+	List<Channel> getAllSubChannels();
 }

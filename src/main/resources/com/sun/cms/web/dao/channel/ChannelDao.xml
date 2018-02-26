@@ -68,4 +68,7 @@
 		resultType="com.sun.cms.web.dto.channel.ChannelTree">
 		select * from t_channel where pid = #{pid}
 	</select>
+	<select id="getAllSubChannels" resultType="com.sun.cms.web.dto.channel.Channel">
+		SELECT * FROM t_channel WHERE pid!=0 
+	</select>
 </mapper>

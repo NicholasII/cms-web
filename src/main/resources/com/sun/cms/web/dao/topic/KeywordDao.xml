@@ -16,27 +16,28 @@
     <include refid="Base_Column_List" />
     from t_keyword
     <where>
-    	<if test="id!=null">
-    		id = #{id,jdbcType=INTEGER}
+    	<if test="name!=null">
+    		name = #{name}
     	</if>
     </where>
+  </select>
+  <select id="selectOne" parameterType="com.sun.cms.web.dto.topic.KeywordDto" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_keyword where name = #{name}
   </select>
   <delete id="delete" parameterType="com.sun.cms.web.dto.topic.KeywordDto">
     delete from t_keyword
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.sun.cms.web.dto.topic.KeywordDto">
-    insert into t_keyword (id, name, times, 
-      nameFullPy, nameShortPy)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{times,jdbcType=INTEGER}, 
+    insert into t_keyword (name, times, nameFullPy, nameShortPy)
+    values (#{name,jdbcType=VARCHAR}, #{times,jdbcType=INTEGER}, 
       #{namefullpy,jdbcType=VARCHAR}, #{nameshortpy,jdbcType=VARCHAR})
   </insert>
   <update id="update" parameterType="com.sun.cms.web.dto.topic.KeywordDto">
     update t_keyword
     <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
       <if test="times != null">
         times = #{times,jdbcType=INTEGER},
       </if>
@@ -47,6 +48,6 @@
         nameShortPy = #{nameshortpy,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where name = #{name}
   </update>
 </mapper>

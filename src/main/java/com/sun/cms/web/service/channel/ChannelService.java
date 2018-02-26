@@ -53,4 +53,13 @@ public class ChannelService extends BaseService<ChannelDao, Channel>{
 		}
 		return true;
 	}
+	/**
+	 * 获取所有子栏目
+	 * @author dongqun
+	 * 2018年2月26日上午9:55:02
+	 * @return
+	 */
+	public List<Channel> getAllSubChannels(){
+		return channelDao.getAllSubChannels();
+	}
 }
