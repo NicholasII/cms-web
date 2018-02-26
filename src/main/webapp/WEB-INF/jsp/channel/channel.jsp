@@ -5,7 +5,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="/common/import.jsp" %>
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${context}/resources/css/user/main.css">
+<%-- <link rel="stylesheet" type="text/css" href="${context}/resources/css/user/main.css"> --%>
+<link rel="stylesheet" type="text/css" href="${context}/resources/css/topic/topic.css">
+<link rel="stylesheet" type="text/css" href="${context}/resources/css/admin/common.css">
 <!-- ztree -->
 <link rel="stylesheet" href="${context}/resources/lib/ZTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
 <script type="text/javascript" src="${context}/resources/lib/ZTree/js/jquery-1.4.4.min.js"></script>

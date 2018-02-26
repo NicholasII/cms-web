@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <%@ include file="/common/import.jsp"%>
-<link rel="stylesheet" type="text/css"
-	href="${context}/resources/css/user/main.css">
+<link rel="stylesheet" type="text/css" href="${context}/resources/css/user/main.css">
+<link rel="stylesheet" type="text/css" href="${context}/resources/css/admin/common.css">
 </head>
 <body>
 	<div id="content">

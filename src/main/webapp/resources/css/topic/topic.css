@@ -6,28 +6,18 @@
 #tableform{
 	margin-top: 20px;
 }
-
-table {
-	padding:15px 10px 5px 10px;
-	font-size:12px;
-	border-top:1px solid #999;
-	border-left:1px solid #999;
-	padding:0px;
-}
-table tr td {
-	padding:6px;
-	padding-right:0px;
-	border-right:1px solid #999;
-	border-bottom:1px solid #999;
-}
-table thead td{
-	background:#336d9b;
-	color:#fff;
-	margin:0px;
-}
 td.leftCol{
 	text-align: right;
 }
 td.rightCol{
 	text-align: left;
+}
+#left{	
+	width: 100px;
+	float: left;
+}
+#right{
+	margin-left:200px;
+	padding:10px 5px 10px 10px;
+	border-left: 1px dotted gray;	
 }

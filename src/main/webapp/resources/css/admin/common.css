@@ -35,7 +35,10 @@ html body{
 table{
 	width: 95%;
 	margin: auto;
-	padding-top: 5px;
+	padding:15px 10px 5px 10px;
+	font-size:12px;
+	border-top:1px solid #999;
+	border-left:1px solid #999;
 }
 tr{
 	height:100%;
@@ -58,4 +61,18 @@ td{
 	padding-left:5px;
 	margin: 0px;
 	border: 1px solid #999;
+}
+tr:nth-child(even){
+	background: #E0DFEF;
+}
+table tr td {
+	padding:6px;
+	padding-right:0px;
+	border-right:1px solid #999;
+	border-bottom:1px solid #999;
+}
+table thead td{
+	background:#336d9b;
+	color:#fff;
+	margin:0px;
 }

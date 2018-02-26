@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<jsp:include page="/common/import.jsp"></jsp:include>
+<%@ include file="/common/import.jsp"%>
+<link rel="stylesheet" type="text/css" href="${context}/resources/css/admin/common.css">
 <link rel="stylesheet" type="text/css" href="/cms-web/resources/css/user/main.css">
 <script type="text/javascript">
 	var user = ${user};

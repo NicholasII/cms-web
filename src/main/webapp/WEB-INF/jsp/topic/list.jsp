@@ -48,7 +48,7 @@
 							<td>推荐</td>
 						</c:if>
 						<c:if test="${topic.recommend==0}">
-							<td>为推荐</td>
+							<td>未推荐</td>
 						</c:if>
 						<td>${topic.channelname}</td>
 						<c:if test="${topic.status==1}">
@@ -72,7 +72,7 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="6" style="text-align: right; margin-right: 10px;">
+					<td colspan="6" style="text-align: right; margin-right: 10px;background: white;">
 						<jsp:include page="/common/pager.jsp">
 							<jsp:param value="${total}" name="total" />
 							<jsp:param value="list" name="url" />
