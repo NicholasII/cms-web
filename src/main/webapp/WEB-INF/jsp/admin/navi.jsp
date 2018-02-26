@@ -37,7 +37,7 @@ $(function(){
 				<span class="navTilteTxt">系统配置</span>
 			</h3>
 			<li><i class="icon"></i><a href="${context}/user/page" target="content">超级链接管理</a></li>
-			<li><i class="icon"></i><a href="${context}/user/page" target="content">网站信息管理</a></li>
+			<li><i class="icon"></i><a href="${context}/system/baseinfo/show" target="content">网站信息管理</a></li>
 			<li><i class="icon"></i><a href="${context}/user/page" target="content">首页图片管理</a></li>
 			<li><i class="icon"></i><a href="${context}/user/page" target="content">网站数据管理</a></li>
 			<li><i class="icon"></i><a href="${context}/user/page" target="content">系统清理管理</a></li>
