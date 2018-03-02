@@ -60,6 +60,7 @@
 			<mvc:mapping path="/role/**"/>
 			<mvc:mapping path="/channel/**"/>
 			<mvc:mapping path="/topic/**"/>
+			<mvc:mapping path="/system/**"/>
 			<bean class="com.sun.cms.web.filter.AuthInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2018-02-24 17:53:18
+Date: 2018-03-02 17:44:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -138,14 +138,16 @@ CREATE TABLE `t_attachment` (
   `isAttach` int(255) default NULL,
   PRIMARY KEY  (`id`),
   KEY `topicid` (`topicid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章福建';
 
 -- ----------------------------
 -- Records of t_attachment
 -- ----------------------------
 INSERT INTO `t_attachment` VALUES ('25e39ac7b665483ab86a97097ea8609a', '6bcf60f1d4ca4804a6d9f38d1facf16f', '1519461115480.jpg', 'data_page_background', 'application/octet-stream', 'jpg', '76106', '0', '1', '1');
 INSERT INTO `t_attachment` VALUES ('a3823ac605cd40d1929cf759fc4d856c', 'd350e1d08ea649328da9bdc08c81fb20', '1519465162011.jpg', 'bg_record_bg', 'application/octet-stream', 'jpg', '101294', '0', '1', '1');
+INSERT INTO `t_attachment` VALUES ('bdb523dfbd8f459e843a4d8c3da5598c', '37907de0d8524ea7b3f1e28fdebbb0f7', '1519613064873.png', 'bg_registerbtn_ok_selected', 'application/octet-stream', 'png', '5741', '0', '1', '1');
 INSERT INTO `t_attachment` VALUES ('dca71af64a484a57bc09247202f8a048', 'd350e1d08ea649328da9bdc08c81fb20', '1519465162264.jpg', 'data_page_background', 'application/octet-stream', 'jpg', '76106', '0', '1', '1');
+INSERT INTO `t_attachment` VALUES ('fb2ab3ca87424deba8b533d854bc157e', '37907de0d8524ea7b3f1e28fdebbb0f7', '1519613059559.jpg', 'bg_record_bg', 'application/octet-stream', 'jpg', '101294', '0', '1', '1');
 
 -- ----------------------------
 -- Table structure for t_channel
@@ -226,6 +228,28 @@ INSERT INTO `t_group_channel` VALUES ('24', '30', '28', '金二胖', 'wlzx');
 INSERT INTO `t_group_channel` VALUES ('25', '31', '28', '三胖统治世界', 'wlzx');
 
 -- ----------------------------
+-- Table structure for t_index_pic
+-- ----------------------------
+DROP TABLE IF EXISTS `t_index_pic`;
+CREATE TABLE `t_index_pic` (
+  `id` int(11) NOT NULL auto_increment,
+  `title` varchar(255) default NULL,
+  `subTitle` varchar(255) default NULL,
+  `linkType` int(255) default NULL,
+  `linkUrl` varchar(255) default NULL,
+  `newName` varchar(255) default NULL,
+  `oldName` varchar(255) default NULL,
+  `status` int(11) default NULL,
+  `pos` int(255) default NULL,
+  `createDate` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='首页图片';
+
+-- ----------------------------
+-- Records of t_index_pic
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_keyword
 -- ----------------------------
 DROP TABLE IF EXISTS `t_keyword`;
@@ -244,6 +268,9 @@ CREATE TABLE `t_keyword` (
 INSERT INTO `t_keyword` VALUES ('1', 'asc', '2', 'asc', null);
 INSERT INTO `t_keyword` VALUES ('2', 'sdad', '1', 'sdad', null);
 INSERT INTO `t_keyword` VALUES ('3', 'asfg', '5', 'asfg', null);
+INSERT INTO `t_keyword` VALUES ('4', '二中', '1', '二中', '二中');
+INSERT INTO `t_keyword` VALUES ('5', '诸城', '1', '诸城', '诸城');
+INSERT INTO `t_keyword` VALUES ('6', '龙城方圆', '2', '龙城方圆', '龙城方圆');
 
 -- ----------------------------
 -- Table structure for t_topic
@@ -270,4 +297,6 @@ CREATE TABLE `t_topic` (
 -- ----------------------------
 -- Records of t_topic
 -- ----------------------------
+INSERT INTO `t_topic` VALUES ('1a7e435eadc6494eaaa149dce0dd2897', '龙城方圆进校园', '龙城方圆', '1', '1', '2018-02-26 10:52:27', '南海子居委会', '14', '超级管理员', 'admin', null, null, null, '2018-02-26 00:00:00');
+INSERT INTO `t_topic` VALUES ('37907de0d8524ea7b3f1e28fdebbb0f7', '诸城二中上龙城新闻', '二中|诸城|龙城方圆', '1', '1', '2018-02-26 10:45:14', '近日质检', '16', '超级管理员', 'admin', '<p style=\"text-align: center;\">相关事宜</p><p>近日，诸城二中由于表现优异，被诸城新闻采访</p>', '继续努力', null, '2018-02-20 00:00:00');
 INSERT INTO `t_topic` VALUES ('d350e1d08ea649328da9bdc08c81fb20', '诸城市第一中学', '平米毛坯|热腾腾|切尔奇翁', '1', '0', '2018-02-24 17:41:08', '金大胖', '29', '超级管理员', 'admin', '<h1 style=\"text-align: center;\">诸城一中校歌</h1><div style=\"text-align: center;\">带着微笑</div><div style=\"text-align: center;\">带着希望</div><div style=\"text-align: center;\">来到美丽的龙源</div>', '全体鼓掌解散', null, '2017-09-05 00:00:00');
