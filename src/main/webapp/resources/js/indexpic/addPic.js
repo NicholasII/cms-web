@@ -3,11 +3,12 @@
  */
 var upload_file_url = ctx + "/system/indexPic/uploadImg"
 
-
+var x,y,w,h;
+var newname,oldname;
 $(function () {
 	var xsize,ysize;
 	var jcrop_api,boundx,boundy;
-	var x,y,w,h;
+	
 	$("#file_upload").uploadify({
 		'auto':false,
 		'multi' : false,
@@ -21,6 +22,7 @@ $(function () {
 			var status = result.state;
 			if (status=="success") {
 				var indexPicDto = result.indexPicDto;
+				$("#indexPicView").empty();
 				addImage(indexPicDto);
 			}else {
 				var msg = result.message;
@@ -39,6 +41,8 @@ $(function () {
 		var indexPicHeight = indexPic.indexPicHeight;
 		xsize = indexPicWidth;
 		ysize = indexPicHeight;
+		newname = indexPic.newName;
+		oldname = indexPic.oldName;
 		var url = ctx + "/resources/upload/indexPic/temp/"+filename; 
 		
 		var cropView = $("<div id='cropview' style='width:"+indexPicWidth+"px;height:"+indexPicHeight+"px;overflow:hidden;margin-bottom:5px;'><img id='cropimg' src='"+url+"' class='jcrop-preview'/></div>");
@@ -86,7 +90,32 @@ $(function () {
     
     
     function confirmSelect() {
-		alert("x:"+x+"y:"+y+"w:"+w+"h:"+h);
+    	var url = ctx + "/system/indexPic/confirmImg";
+    	var data = {};
+    	data.x = x;
+    	data.y = y;
+    	data.w = w;
+    	data.h = h;
+    	data.newName = newname;
+		commonAjax(url,"post",data,"selectImage");
 	}
+    
+    
 })
+
+function selectImage(data){
+    	if(data.status = "success"){
+    		$("#indexPicView").empty();
+    		var imgUrl = ctx +"/resources/upload/indexPic/"+newname;
+    		var imgView = $("<img src='"+imgUrl+"'>");
+    		$("#indexPicView").append(imgView);
+    		var newNameInput = $("<input type='hidden' name='newName' value='"+newname+"'>");
+    		var oldNameInput = $("<input type='hidden' name='oldName' value='"+oldname+"'>");
+    		$("#hiddeninput").empty();
+    		$("#hiddeninput").append(oldNameInput);
+    		$("#hiddeninput").append(newNameInput);
+    	}else{
+    		alert("添加失败，请重试！")
+    	}
+    }
 	

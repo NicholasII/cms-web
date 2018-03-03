@@ -61,8 +61,8 @@
 				</tr>
 				<tr>
 					<td class="leftCol">文章状态</td>
-					<td class="rightCol"><input id="publish" type="radio" value="0" name="status"
-						checked="checked">未发布<input id="unpublish" type="radio" value="1"
+					<td class="rightCol"><input id="unpublish" type="radio" value="0" name="status"
+						checked="checked">未发布<input id="publish" type="radio" value="1"
 						name="status">发布</td>
 				</tr>
 				<tr>

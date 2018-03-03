@@ -4,18 +4,23 @@
   <resultMap id="BaseResultMap" type="com.sun.cms.web.dto.indexpic.IndexPic">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="subTitle" jdbcType="VARCHAR" property="subtitle" />
-    <result column="linkType" jdbcType="INTEGER" property="linktype" />
-    <result column="linkUrl" jdbcType="VARCHAR" property="linkurl" />
-    <result column="newName" jdbcType="VARCHAR" property="newname" />
-    <result column="oldName" jdbcType="VARCHAR" property="oldname" />
+    <result column="subTitle" jdbcType="VARCHAR" property="subTitle" />
+    <result column="linkType" jdbcType="INTEGER" property="linkType" />
+    <result column="linkUrl" jdbcType="VARCHAR" property="linkUrl" />
+    <result column="newName" jdbcType="VARCHAR" property="newName" />
+    <result column="oldName" jdbcType="VARCHAR" property="oldName" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="pos" jdbcType="INTEGER" property="pos" />
-    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
   </resultMap>
   <sql id="Base_Column_List">
     id, title, subTitle, linkType, linkUrl, newName, oldName, status, pos, createDate
   </sql>
+  <select id="select" parameterType="com.sun.cms.web.dto.indexpic.IndexPic" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_index_pic
+  </select>
   <select id="selectOne" parameterType="com.sun.cms.web.dto.indexpic.IndexPic" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -27,14 +32,14 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.sun.cms.web.dto.indexpic.IndexPic">
-    insert into t_index_pic (id, title, subTitle, 
+    insert into t_index_pic (title, subTitle, 
       linkType, linkUrl, newName, 
       oldName, status, pos, 
       createDate)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, 
-      #{linktype,jdbcType=INTEGER}, #{linkurl,jdbcType=VARCHAR}, #{newname,jdbcType=VARCHAR}, 
-      #{oldname,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{pos,jdbcType=INTEGER}, 
-      #{createdate,jdbcType=TIMESTAMP})
+    values (#{title,jdbcType=VARCHAR}, #{subTitle,jdbcType=VARCHAR}, 
+      #{linkType,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR}, #{newName,jdbcType=VARCHAR}, 
+      #{oldName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{pos,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP})
   </insert>
   <update id="update" parameterType="com.sun.cms.web.dto.indexpic.IndexPic">
     update t_index_pic
@@ -42,20 +47,20 @@
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="subtitle != null">
-        subTitle = #{subtitle,jdbcType=VARCHAR},
+      <if test="subTitle != null">
+        subTitle = #{subTitle,jdbcType=VARCHAR},
       </if>
-      <if test="linktype != null">
-        linkType = #{linktype,jdbcType=INTEGER},
+      <if test="linkType != null">
+        linkType = #{linkType,jdbcType=INTEGER},
       </if>
-      <if test="linkurl != null">
-        linkUrl = #{linkurl,jdbcType=VARCHAR},
+      <if test="linkUrl != null">
+        linkUrl = #{linkUrl,jdbcType=VARCHAR},
       </if>
-      <if test="newname != null">
-        newName = #{newname,jdbcType=VARCHAR},
+      <if test="newName != null">
+        newName = #{newName,jdbcType=VARCHAR},
       </if>
-      <if test="oldname != null">
-        oldName = #{oldname,jdbcType=VARCHAR},
+      <if test="oldName != null">
+        oldName = #{oldName,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -63,8 +68,8 @@
       <if test="pos != null">
         pos = #{pos,jdbcType=INTEGER},
       </if>
-      <if test="createdate != null">
-        createDate = #{createdate,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        createDate = #{createDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
