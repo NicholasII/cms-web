@@ -25,6 +25,7 @@
 					<td>图片标题</td>
 					<td>状态</td>
 					<td>链接类型</td>
+					<td>位置</td>
 					<td>用户操作</td>
 				</tr>
 			</thead>
@@ -45,6 +46,7 @@
 						<c:if test="${indexpic.linkType==0}">
 							<td>站内链接</td>
 						</c:if>
+						<td>${indexpic.pos} <a href="javascript:orderIndexPic('${indexpic.id}','${indexpic.pos}')" class="o_button">排序</a><div id="pos${indexpic.id}" style="display: inline;"></div></td>
 						<td>
 							<a href="javascript:deleteInexPicture('${indexpic.id}')" class="a_button">删除</a> 
 							<a href="${context}/system/indexPic/updateIndexPic/${indexpic.id}" class="a_button">更新</a>
@@ -87,6 +89,33 @@ function deleteInexPicture(indexpicid) {
 		}
 	});
 	
+}
+function orderIndexPic(id,pos){
+	var spinnerid = "spinner"+id;
+	var spinner = $("<input id='"+spinnerid+"' name='value'>&nbsp;<a href='javascript:order("+id+","+pos+")' class='o_button'>确定</a>&nbsp;<a href='javascript:clear("+id+")' class='o_button'>取消</a>");
+	$("#pos"+id).append(spinner);
+	$("#"+spinnerid).spinner({
+		spin: function(event, ui) {
+	        if (ui.value > ${total}) {
+	          $(this ).spinner("value", 0);
+	          return false;
+	        } else if ( ui.value < 0 ) {
+	          $( this ).spinner( "value", ${total});
+	          return false;
+	        }
+	      },
+	      value:pos
+	});	
+}
+function order(id,pos){	
+	var newpos = $("#spinner"+id).spinner("value");
+	var pos = pos;
+	var id = id;
+	var url = ctx + "/system/indexPic/updatePos/"+id+"/"+pos+"/"+newpos;
+	formSubmit(url,[])
+}
+function clear(id){
+	$("#pos"+id).empty();
 }
 </script>
 </html>

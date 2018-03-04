@@ -19,7 +19,7 @@
   <select id="select" parameterType="com.sun.cms.web.dto.indexpic.IndexPic" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_index_pic
+    from t_index_pic order by pos
   </select>
   <select id="selectOne" parameterType="com.sun.cms.web.dto.indexpic.IndexPic" resultMap="BaseResultMap">
     select 
@@ -38,7 +38,7 @@
       createDate)
     values (#{title,jdbcType=VARCHAR}, #{subTitle,jdbcType=VARCHAR}, 
       #{linkType,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR}, #{newName,jdbcType=VARCHAR}, 
-      #{oldName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{pos,jdbcType=INTEGER}, 
+      #{oldName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 1, 
       #{createDate,jdbcType=TIMESTAMP})
   </insert>
   <update id="update" parameterType="com.sun.cms.web.dto.indexpic.IndexPic">
@@ -73,5 +73,19 @@
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updatePoistion">
+  	update t_index_pic
+  	<set>
+  		<if test="pos>newpos">
+  			pos = pos + 1 where pos between #{newpos} and #{pos}-1
+  		</if>
+  		<if test="newpos>pos">
+  			pos = pos - 1 where pos between #{pos}+1 and #{newpos}
+  		</if>
+  	</set>
+  </update>
+  <update id="insertPositon">
+  	update t_index_pic set pos = pos + 1 where pos > 0
   </update>
 </mapper>

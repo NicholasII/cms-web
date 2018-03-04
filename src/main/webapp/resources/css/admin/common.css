@@ -18,6 +18,15 @@ html body{
 	padding: 3px;
 	text-decoration: none;
 }
+.o_button{
+	color:white;
+	background: #6BE61A;
+	padding: 3px;
+	text-decoration: none;
+}
+.o_button:hover{
+	background: #D5B32B;
+}
 .link_bar{
 	width: 100%;
 	height: 28px;

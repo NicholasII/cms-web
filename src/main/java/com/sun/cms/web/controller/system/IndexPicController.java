@@ -58,7 +58,7 @@ public class IndexPicController extends BaseController<IndexPic> {
 		ModelAndView modelAndView = new ModelAndView("/indexpic/load");
 		try {
 			indexPic.setCreateDate(new Date());
-			indexPicService.insert(indexPic);
+			indexPicService.insertAndUpdatePos(indexPic);
 			modelAndView.addObject("state", true);
 		} catch (Exception e) {	
 			modelAndView.addObject("state", false);
@@ -101,6 +101,21 @@ public class IndexPicController extends BaseController<IndexPic> {
 		ModelAndView modelAndView = new ModelAndView("/indexpic/update");
 		modelAndView.addObject("indexpic",JSON.toJSONString(indexPic));
 		return modelAndView;
+	}
+	
+	@RequestMapping("/updatePos/{id}/{pos}/{newPos}")
+	@AuthMethod(role="admin")
+	public ModelAndView updatePositon(@PathVariable int id,@PathVariable int pos,@PathVariable int newPos){
+		boolean result;
+		try {
+			result = indexPicService.updatePosition(id, pos, newPos);
+			if (result) {
+				return list();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list();
 	}
 	
 	@RequestMapping("/list")
