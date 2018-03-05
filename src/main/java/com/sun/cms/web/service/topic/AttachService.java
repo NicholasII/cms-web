@@ -11,9 +11,13 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.sun.cms.model.PageDto;
 import com.sun.cms.service.BaseService;
 import com.sun.cms.web.dao.topic.AttachmentDao;
 import com.sun.cms.web.dto.SystemContext;
+import com.sun.cms.web.dto.indexpic.IndexNewsPic;
 import com.sun.cms.web.dto.topic.AttachmentDto;
 
 import net.coobird.thumbnailator.Thumbnails;
@@ -90,6 +94,22 @@ public class AttachService extends BaseService<AttachmentDao, AttachmentDto> {
 			Thumbnails.of(newBi).sourceRegion(Positions.CENTER, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT).size(100, 80).toFile(new File(thumbPath));
 		}else {
 			FileUtils.copyInputStreamToFile(is, new File(path));
+		}
+	}
+	
+	
+	public PageDto<IndexNewsPic> getAllIndexNewsPic(int pageNum,int pageSize){
+		try {
+			PageHelper.startPage(pageNum, pageSize);
+			List<IndexNewsPic> pagelist = attachmentDao.getImgAttachForIndexPic();
+			PageInfo<IndexNewsPic> pageInfo = new PageInfo<>(pagelist);
+			PageDto<IndexNewsPic> pageDto = new PageDto<>();
+			pageDto.setRows(pageInfo.getList());
+			pageDto.setTotal(pageInfo.getTotal());
+			return pageDto;
+		} catch (Exception e) {			
+			e.printStackTrace();
+			return null;
 		}
 	}
 

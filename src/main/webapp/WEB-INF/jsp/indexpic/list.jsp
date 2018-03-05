@@ -97,15 +97,15 @@ function orderIndexPic(id,pos){
 	$("#"+spinnerid).spinner({
 		spin: function(event, ui) {
 	        if (ui.value > ${total}) {
-	          $(this ).spinner("value", 0);
+	          $(this ).spinner("value", 1);
 	          return false;
-	        } else if ( ui.value < 0 ) {
+	        } else if ( ui.value < 1 ) {
 	          $( this ).spinner( "value", ${total});
 	          return false;
 	        }
-	      },
-	      value:pos
+	      }
 	});	
+	$("#"+spinnerid).spinner("value", pos);
 }
 function order(id,pos){	
 	var newpos = $("#spinner"+id).spinner("value");

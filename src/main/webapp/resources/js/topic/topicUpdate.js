@@ -26,7 +26,12 @@ $(function() {
 			$("#unrecommend").attr("checked", "checked");
 		}
 		var createdate = topic.createdate;
-		$("#createdate").val(createdate);
+		var date = new Date(createdate);
+		var year = date.getFullYear();
+        var month = date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1;
+        var day = date.getDate()<10 ? '0'+(date.getDate()) : date.getDate();
+		date = month + "/" + day + "/" + year;
+		$("#createdate").val(date);
 		var content = topic.content;
 		$("#content").val(content);
 		var summary = topic.summary;

@@ -47,8 +47,8 @@ $(document).ready(function() {
 		var indexImg,channelImg;
 		if (attach.isimg==1) {
 			fileImg=$("<td><img src="+imgUrl+"></td>");
-			indexImg = $("<td><input type='checkbox' value="+ attach.id +"></td>");
-			channelImg = $("<td><input type='radio' name='channelpicid' value="+ attach.id +"></td>");
+			indexImg = $("<td><input onclick='setIndexPic(this,"+attach.id+")' type='checkbox' value="+ attach.id +"></td>");
+			channelImg = $("<td><input id='channelpicid' type='radio' name='channelpicid' value="+ attach.id +"></td>");
 		}else {
 			fileImg = $("<td>普通附件类型</td>");
 			indexImg = $("<td>普通附件类型</td>");
@@ -61,7 +61,7 @@ $(document).ready(function() {
 		rows.append(fileSize);
 		rows.append(indexImg);
 		rows.append(channelImg);
-		var attachment = $("<td><input type='checkbox' value="+ attach.id +"></td>");
+		var attachment = $("<td><input onclick='setIsAttachment(this,'"+attach.id+"')' type='checkbox' value="+ attach.id +" checked='checked'></td>");
 		rows.append(attachment);
 		var operate = $("<td><a href='#' class='a_button'>删除附件</a>&nbsp;&nbsp;<a href='#' class='a_button'>插入到文章</a></td>");
 		rows.append(operate);
@@ -72,6 +72,7 @@ $(document).ready(function() {
 	$("#uploadFile").click(function() {
 		$("#file_upload").uploadify("upload","*");
 	})
+	
 });
 function beforeClick(treeId, treeNode) {
 	var check = (treeNode && !treeNode.isParent);
@@ -115,4 +116,33 @@ function onBodyDown(event) {
 			event.target).parents("#menuContent").length > 0)) {
 		hideMenu();
 	}
+}
+
+function setIndexPic(element,id) {
+	var checked = element.checked;
+	var url = ctx + "/topic/updateAttach/" + id;
+	var data = {};
+	if (checked) {
+		data.isindexpic = 1;
+	}else {
+		data.isindexpic = 0;
+	}
+	commonAjax(url,"post",data,"updateIndexPic");
+}
+function updateIndexPic(data) {
+	alert(data);
+}
+function setIsAttachment(element,id){
+	var checked = element.checked;
+	var url = ctx + "/topic/updateAttach/" + id;
+	var data = {};
+	if (checked) {
+		data.isattach = 1;
+	}else {
+		data.isattach = 0;
+	}
+	commonAjax(url,"post",data,"updateIsAttach");
+}
+function updateIsAttach(data){
+	alert(data);
 }

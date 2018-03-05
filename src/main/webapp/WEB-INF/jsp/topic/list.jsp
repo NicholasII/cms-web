@@ -52,19 +52,13 @@
 						</c:if>
 						<td>${topic.channelname}</td>
 						<c:if test="${topic.status==1}">
-							<td>已发布</td>
+							<td>已发布&nbsp;<a href="/cms-web/topic/updatePublish/${topic.id}/0" class="a_button">取消发布</a></td> 
 						</c:if>
 						<c:if test="${topic.status==0}">
-							<td>未发布</td>
+							<td>未发布&nbsp;<a href="/cms-web/topic/updatePublish/${topic.id}/1" class="a_button">发布</a> </td>
 						</c:if>
 						<td>
 							<a href="/cms-web/topic/update/${topic.id}" class="a_button">修改</a> 
-							<c:if test="${topic.status==1}">
-								<a href="/cms-web/topic/updatePublish/${topic.id}/0" class="a_button">取消发布</a> 
-							</c:if>
-							<c:if test="${topic.status==0}">
-								<a href="/cms-web/topic/updatePublish/${topic.id}/1" class="a_button">发布</a> 
-							</c:if>
 							<a href="javascript:deleteTopic('${topic.id}')" class="a_button">删除</a>
 						</td>		
 					</tr>

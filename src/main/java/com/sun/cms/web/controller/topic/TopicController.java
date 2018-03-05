@@ -31,6 +31,7 @@ import com.sun.cms.web.common.BaseController;
 import com.sun.cms.web.dto.SystemContext;
 import com.sun.cms.web.dto.UserDto;
 import com.sun.cms.web.dto.channel.ChannelSimpleTree;
+import com.sun.cms.web.dto.indexpic.IndexNewsPic;
 import com.sun.cms.web.dto.topic.AttachmentDto;
 import com.sun.cms.web.dto.topic.TopicDto;
 import com.sun.cms.web.service.channel.UserChannelService;
@@ -296,7 +297,9 @@ public class TopicController extends BaseController<TopicDto>{
 				topic.setChannelpicid(channelpicid);
 			}
 			result = topicService.update(topic);
-
+			if (attachs!=null && attachs.length>0) {
+				attachService.bindTopic(attachs, topicId);
+			}
 			if (result) {
 				modelAndView.addObject("state", "success");
 			}else {
@@ -366,5 +369,44 @@ public class TopicController extends BaseController<TopicDto>{
 		modelAndView.addObject("topic", pageDto);
 		modelAndView.addObject("total", pageDto.getTotal());
 		return modelAndView;
+	}
+	
+	@RequestMapping("/newslist")
+	@AuthMethod(role="admin")
+	public ModelAndView newslist(){
+		ModelAndView modelAndView = new ModelAndView("indexpic/newslist");
+		Integer pageNum = SystemContext.getPageOffset();
+		Integer pageSize = SystemContext.getPageSize();
+		PageDto<IndexNewsPic> pageDto = attachService.getAllIndexNewsPic(pageNum, pageSize);		
+		modelAndView.addObject("indexnewspic", pageDto);
+		modelAndView.addObject("total", pageDto.getTotal());
+		return modelAndView;
+	}
+	
+	@RequestMapping("/updateAttach/{id}")
+	public ModelMap updateAttachment(@PathVariable String id,HttpServletRequest request){
+		ModelMap map = new ModelMap();
+		try {
+			String isIndexPic = request.getParameter("isindexpic");
+			String isAttach = request.getParameter("isattach");
+			AttachmentDto attachmentDto = new AttachmentDto();
+			attachmentDto.setId(id);
+			if (CommonUtils.isEmpty(isIndexPic)) {
+				attachmentDto.setIsindexpic(Integer.valueOf(isIndexPic));
+			}
+			if (CommonUtils.isEmpty(isAttach)) {
+				attachmentDto.setIsattach(Integer.valueOf(isAttach));
+			}
+			boolean result = attachService.update(attachmentDto);
+			if (result) {
+				map.addAttribute("status", "success");
+			}else {
+				map.addAttribute("status", "fail");
+			}
+		} catch (NumberFormatException e) {
+			map.addAttribute("status", "fail");
+			e.printStackTrace();
+		}
+		return map;
 	}
 }
