@@ -384,6 +384,7 @@ public class TopicController extends BaseController<TopicDto>{
 	}
 	
 	@RequestMapping("/updateAttach/{id}")
+	@ResponseBody
 	public ModelMap updateAttachment(@PathVariable String id,HttpServletRequest request){
 		ModelMap map = new ModelMap();
 		try {

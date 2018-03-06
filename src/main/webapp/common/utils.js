@@ -32,7 +32,11 @@ function commonAjax(url,type,data,callback){
 			eval(callback)(response);
 		},
 		error:function(xhr,status,exception){
-			alert("fail")
+            if(xhr.status="404"){
+                alert("ajax error:找不到页面！");
+            }else{
+                alert("ajax error:其他错误！");
+            }
 		}
 	});
 }

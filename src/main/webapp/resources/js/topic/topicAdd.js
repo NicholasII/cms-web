@@ -44,16 +44,18 @@ $(document).ready(function() {
 		var rows = $("<tr><input name='attachments' type='hidden' value="+ attach.id +"></tr>");
 		var fileImg;
 		var imgUrl = ctx + "/resources/upload/thumbnail/" + attach.newname;
-		var indexImg,channelImg;
+		var indexImg,channelImg;	
+		
 		if (attach.isimg==1) {
 			fileImg=$("<td><img src="+imgUrl+"></td>");
-			indexImg = $("<td><input onclick='setIndexPic(this,"+attach.id+")' type='checkbox' value="+ attach.id +"></td>");
+			indexImg = $("<td><input onclick='setIndexPic(this)' type='checkbox' value="+ attach.id +"></td>");
 			channelImg = $("<td><input id='channelpicid' type='radio' name='channelpicid' value="+ attach.id +"></td>");
 		}else {
 			fileImg = $("<td>普通附件类型</td>");
 			indexImg = $("<td>普通附件类型</td>");
 			channelImg = $("<td>普通附件类型</td>");
 		}
+		
 		rows.append(fileImg);
 		var fileName = $("<td>"+attach.newname+"</td>");
 		rows.append(fileName);
@@ -61,7 +63,8 @@ $(document).ready(function() {
 		rows.append(fileSize);
 		rows.append(indexImg);
 		rows.append(channelImg);
-		var attachment = $("<td><input onclick='setIsAttachment(this,'"+attach.id+"')' type='checkbox' value="+ attach.id +" checked='checked'></td>");
+
+		var attachment = $("<td><input onclick='setIsAttachment(this)' type='checkbox' value="+ attach.id +" checked='checked'></td>");
 		rows.append(attachment);
 		var operate = $("<td><a href='#' class='a_button'>删除附件</a>&nbsp;&nbsp;<a href='#' class='a_button'>插入到文章</a></td>");
 		rows.append(operate);
@@ -71,9 +74,18 @@ $(document).ready(function() {
 	
 	$("#uploadFile").click(function() {
 		$("#file_upload").uploadify("upload","*");
-	})
+	})	
 	
 });
+
+
+$("input.isIndexImg").click(function(){
+	var id = $(this).val();
+	var checked = $(this).attr("checked");
+	alert(id);
+	alert(checked);
+});
+
 function beforeClick(treeId, treeNode) {
 	var check = (treeNode && !treeNode.isParent);
 	if (!check)
@@ -118,21 +130,21 @@ function onBodyDown(event) {
 	}
 }
 
-function setIndexPic(element,id) {
+function setIndexPic(element) {
+	var id = element.value;
 	var checked = element.checked;
 	var url = ctx + "/topic/updateAttach/" + id;
 	var data = {};
 	if (checked) {
-		data.isindexpic = 1;
+	data.isindexpic = 1;
 	}else {
 		data.isindexpic = 0;
 	}
-	commonAjax(url,"post",data,"updateIndexPic");
+	commonAjax(url,"post",data,"updateState");
 }
-function updateIndexPic(data) {
-	alert(data);
-}
-function setIsAttachment(element,id){
+
+function setIsAttachment(element){
+	var id = element.value;
 	var checked = element.checked;
 	var url = ctx + "/topic/updateAttach/" + id;
 	var data = {};
@@ -141,8 +153,15 @@ function setIsAttachment(element,id){
 	}else {
 		data.isattach = 0;
 	}
-	commonAjax(url,"post",data,"updateIsAttach");
+	commonAjax(url,"post",data,"updateState");
 }
-function updateIsAttach(data){
-	alert(data);
+function updateState(data) {
+	if (data.status=="success") {
+		alert("更新成功！");
+	}else if (data.status=="fail") {
+		alert("更新失败！");
+	}else {
+		alert("其他！");
+	}
+	
 }

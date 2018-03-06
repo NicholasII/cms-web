@@ -26,8 +26,6 @@
 <!-- 自定义js -->
 <script type="text/javascript" src="${context}/resources/plugin/JQuery.cms.core.js"></script>
 <script type="text/javascript" src="${context}/resources/plugin/JQuery.cms.keyword.js"></script>
-<script type="text/javascript" src="${context}/resources/js/topic/topicAdd.js"></script>
-<script type="text/javascript" src="${context}/resources/js/topic/topicUpdate.js"></script>
 <script type="text/javascript">
 	var havingTree = ${tree};
 	var topic = ${topic};
@@ -36,6 +34,8 @@
 		$("#createdate").datepicker();
 	});
 </script>
+<script type="text/javascript" src="${context}/resources/js/topic/topicAdd.js"></script>
+<script type="text/javascript" src="${context}/resources/js/topic/topicUpdate.js"></script>
 </head>
 <body>
 	<div class="link_bar">

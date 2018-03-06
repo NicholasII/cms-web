@@ -38,7 +38,8 @@ $(function() {
 		$("#summary").val(summary);
 		var keywords = topic.keyward;
 		addKeyword(keywords);
-		addAttachs();
+		var channelpicid  = topic.channelpicid;
+		addAttachs(channelpicid);
 	}
 });
 
@@ -53,27 +54,40 @@ function addKeyword(keywords) {
 function createKeywordNode(value){
 	return '<div class="keyward-in"><span>'+value+'</span><a href="#" class="keyward-shut">x</a><input type="hidden" name="keyward" value="'+value+'"></div>';
 }
-function addAttachs() {
+function addAttachs(channelpicid) {
 	if (attachments!=null) {
 		for (var int = 0; int < attachments.length; int++) {
 			var attach = attachments[int];
-			createAttachNode(attach);
+			createAttachNode(attach,channelpicid);
 		}
 	}
 }
-function createAttachNode(attach) {
+function createAttachNode(attach,channelpicid) {
 	var rows = $("<tr><input name='attachments' type='hidden' value="+ attach.id +"></tr>");
 	var fileImg;
 	var imgUrl = ctx + "/resources/upload/thumbnail/" + attach.newname;
-	var indexImg,channelImg;
+	var indexImg,channelImg,attachment;
 	if (attach.isimg==1) {
 		fileImg=$("<td><img src="+imgUrl+"></td>");
-		indexImg = $("<td><input type='checkbox' value="+ attach.id +"></td>");
-		channelImg = $("<td><input type='radio' name='channelpicid' value="+ attach.id +"></td>");
+		if (attach.isindexpic==1) {
+			indexImg = $("<td><input onclick='setIndexPic(this)' type='checkbox' value="+ attach.id +" checked='checked'></td>");
+		}else {
+			indexImg = $("<td><input onclick='setIndexPic(this)' type='checkbox' value="+ attach.id +"></td>");
+		}
+		if (channelpicid==attach.id) {
+			channelImg = $("<td><input type='radio' name='channelpicid' value="+ attach.id +" checked='checked'></td>");
+		}else {
+			channelImg = $("<td><input type='radio' name='channelpicid' value="+ attach.id +"></td>");
+		}	
 	}else {
 		fileImg = $("<td>普通附件类型</td>");
 		indexImg = $("<td>普通附件类型</td>");
 		channelImg = $("<td>普通附件类型</td>");
+	}
+	if (attach.isattach) {
+		attachment = $("<td><input onclick='setIsAttachment(this)' type='checkbox' value="+ attach.id +" checked='checked'></td>");
+	}else {
+		attachment = $("<td><input onclick='setIsAttachment(this)' type='checkbox' value="+ attach.id +"></td>");
 	}
 	rows.append(fileImg);
 	var fileName = $("<td>"+attach.newname+"</td>");
@@ -82,7 +96,6 @@ function createAttachNode(attach) {
 	rows.append(fileSize);
 	rows.append(indexImg);
 	rows.append(channelImg);
-	var attachment = $("<td><input type='checkbox' value="+ attach.id +"></td>");
 	rows.append(attachment);
 	var operate = $("<td><a href='#' class='a_button'>删除附件</a>&nbsp;&nbsp;<a href='#' class='a_button'>插入到文章</a></td>");
 	rows.append(operate);
