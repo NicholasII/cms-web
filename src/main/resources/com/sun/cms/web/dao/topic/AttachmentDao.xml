@@ -35,6 +35,12 @@
   <select id="getImgAttachForIndexPic" resultType="com.sun.cms.web.dto.indexpic.IndexNewsPic">
   	SELECT a.id,a.newName,a.isIndexPic,t.title FROM t_attachment a,t_topic t WHERE a.topicid = t.id AND t.status=1 AND a.isImg=1
   </select>
+  <select id="getNoUseAttachments" resultType="com.sun.cms.web.dto.topic.AttachmentDto">
+  	SELECT * FROM t_attachment a WHERE a.topicid IS NULL
+  </select>
+  <select id="getNoUseAttachSize" resultType="java.lang.Integer">
+  	SELECT COUNT(*) FROM t_attachment a WHERE a.topicid IS NULL
+  </select>
   <delete id="delete" parameterType="com.sun.cms.web.dto.topic.AttachmentDto">
     delete from t_attachment
     where id = #{id,jdbcType=VARCHAR}

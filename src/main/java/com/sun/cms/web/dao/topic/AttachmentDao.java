@@ -9,5 +9,9 @@ import com.sun.cms.web.dto.topic.AttachmentDto;
 public interface AttachmentDao extends BaseDao<AttachmentDto>{
 	
 	List<IndexNewsPic> getImgAttachForIndexPic();
+	
+	List<AttachmentDto> getNoUseAttachments();
+	
+	Integer getNoUseAttachSize();
 
 }
