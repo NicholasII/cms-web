@@ -11,7 +11,7 @@
 <script type="text/javascript" src="${context}/resources/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${context}/resources/css/topic/topic.css">
 <link rel="stylesheet" type="text/css" href="${context}/resources/css/admin/common.css">
-<script type="text/javascript" src="${context}/resources/js/topic/list.js"></script>
+<%-- <script type="text/javascript" src="${context}/resources/js/topic/list.js"></script> --%>
 </head>
 <body>
 	<div id="content">
@@ -46,7 +46,7 @@
 						<c:if test="${indexpic.linkType==0}">
 							<td>站内链接</td>
 						</c:if>
-						<td>${indexpic.pos} <a href="javascript:orderIndexPic('${indexpic.id}','${indexpic.pos}')" class="o_button">排序</a><div id="pos${indexpic.id}" style="display: inline;"></div></td>
+						<td>${indexpic.pos} <a href="javascript:orderIndexPic(this,'${indexpic.id}','${indexpic.pos}')" class="o_button">排序</a><div id="pos${indexpic.id}" style="display: inline;"></div></td>
 						<td>
 							<a href="javascript:deleteInexPicture('${indexpic.id}')" class="a_button">删除</a> 
 							<a href="${context}/system/indexPic/updateIndexPic/${indexpic.id}" class="a_button">更新</a>
@@ -90,22 +90,25 @@ function deleteInexPicture(indexpicid) {
 	});
 	
 }
-function orderIndexPic(id,pos){
-	var spinnerid = "spinner"+id;
-	var spinner = $("<input id='"+spinnerid+"' name='value'>&nbsp;<a href='javascript:order("+id+","+pos+")' class='o_button'>确定</a>&nbsp;<a href='javascript:clear("+id+")' class='o_button'>取消</a>");
-	$("#pos"+id).append(spinner);
-	$("#"+spinnerid).spinner({
-		spin: function(event, ui) {
-	        if (ui.value > ${total}) {
-	          $(this ).spinner("value", 1);
-	          return false;
-	        } else if ( ui.value < 1 ) {
-	          $( this ).spinner( "value", ${total});
-	          return false;
-	        }
-	      }
-	});	
-	$("#"+spinnerid).spinner("value", pos);
+function orderIndexPic(element,id,pos){
+	if($("#pos"+id).children().length==0){
+		var spinnerid = "spinner"+id;
+		var spinner = $("<input id='"+spinnerid+"' name='value'>&nbsp;<a href='javascript:order("+id+","+pos+")' class='o_button'>确定</a>&nbsp;<a href='javascript:clear("+id+")' class='o_button'>取消</a>");
+		$("#pos"+id).append(spinner);
+		$("#"+spinnerid).spinner({
+			spin: function(event, ui) {
+		        if (ui.value > ${total}) {
+		          $(this ).spinner("value", 1);
+		          return false;
+		        } else if ( ui.value < 1 ) {
+		          $( this ).spinner( "value", ${total});
+		          return false;
+		        }
+		      }
+		});	
+		$("#"+spinnerid).spinner("value", pos);
+	}
+	
 }
 function order(id,pos){	
 	var newpos = $("#spinner"+id).spinner("value");
