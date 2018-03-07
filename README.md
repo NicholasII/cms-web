@@ -27,7 +27,7 @@ cms-web，搭建SSM框架<br>
 完成文章管理模块：相关技术1、上传uploadify 2、富文字编辑器xhedit 3、栏木树ztree 3、自动填充、时间控件-jquery ui 4、图像切割thumbnail
 在此推荐图像处理的神器！大名鼎鼎的thumbnail 可参考：<a href="https://www.cnblogs.com/fomeiherz/p/5882643.html" alt="链接已失效">thumbnail使用指南</a><br>
   本系统大量图像处理的部分，都使用了该工具、简单方便直接上手：<br>
-  <img src="/cms-web/src/main/webapp/resources/upload/indexPic/20180307102445.png"><br>
+  <img src="cms-web/src/main/webapp/resources/upload/indexPic/20180307102445.png"><br>
   基于jcorp和thumbnail实现了上图首页图片的截取！<br>
 系统配置部分：<br>
   完成网站信息的管理，采用配置文件的方式填充网站的基本信息<br>
