@@ -29,10 +29,10 @@
 						<td><img alt="图片已删除" src="${context}/resources/upload/thumbnail/${indexpic.newName}"></td>
 						<td>${indexpic.title}</td>
 						<c:if test="${indexpic.isIndexPic==1}">
-							<td><input type="checkbox" checked="checked"></td>
+							<td><input type="checkbox" checked="checked" value="${indexpic.id}" onclick="setIndexPic(this)"></td>
 						</c:if>
 						<c:if test="${indexpic.isIndexPic==0}">
-							<td><input type="checkbox"></td>
+							<td><input type="checkbox" value="${indexpic.id}" onclick="setIndexPic(this)"></td>
 						</c:if>								
 					</tr>
 				</c:forEach>
@@ -50,4 +50,28 @@
 		</table>
 	</div>
 </body>
+<script type="text/javascript">
+	function setIndexPic(element) {
+		var id = element.value;
+		var checked = element.checked;
+		var url = ctx + "/topic/updateAttach/" + id;
+		var data = {};
+		if (checked) {
+			data.isindexpic = 1;
+		} else {
+			data.isindexpic = 0;
+		}
+		commonAjax(url, "post", data, "updateState");
+	}
+	function updateState(data) {
+		if (data.status == "success") {
+			alert("更新成功！");
+		} else if (data.status == "fail") {
+			alert("更新失败！");
+		} else {
+			alert("其他！");
+		}
+
+	}
+</script>
 </html>
