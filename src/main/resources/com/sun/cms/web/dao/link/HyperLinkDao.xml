@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sun.cms.web.dao.link.HyperLinkDao">
+  <resultMap id="BaseResultMap" type="com.sun.cms.web.dto.link.HyperLink">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="newWin" jdbcType="INTEGER" property="newwin" />
+    <result column="urlId" jdbcType="VARCHAR" property="urlid" />
+    <result column="urlClass" jdbcType="VARCHAR" property="urlclass" />
+    <result column="pos" jdbcType="INTEGER" property="pos" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, url, type, newWin, urlId, urlClass, pos
+  </sql>
+  <select id="select" parameterType="com.sun.cms.web.dto.link.HyperLink" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_hyper_link
+    <where>
+    	<if test="type!=null">
+    		type=#{type}
+    	</if>
+    </where>
+  </select>
+  <select id="selectOne" parameterType="com.sun.cms.web.dto.link.HyperLink" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_hyper_link
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from t_hyper_link
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sun.cms.web.dto.link.HyperLink">
+    insert into t_hyper_link (title, url, 
+      type, newWin, urlId, 
+      urlClass, pos)
+    values (#{title,jdbcType=VARCHAR},#{url,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{newwin,jdbcType=INTEGER}, #{urlid,jdbcType=VARCHAR}, 
+      #{urlclass,jdbcType=VARCHAR}, #{pos,jdbcType=INTEGER})
+  </insert> 
+  <update id="update" parameterType="com.sun.cms.web.dto.link.HyperLink">
+    update t_hyper_link
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="newwin != null">
+        newWin = #{newwin,jdbcType=INTEGER},
+      </if>
+      <if test="urlid != null">
+        urlId = #{urlid,jdbcType=VARCHAR},
+      </if>
+      <if test="urlclass != null">
+        urlClass = #{urlclass,jdbcType=VARCHAR},
+      </if>
+      <if test="pos != null">
+        pos = #{pos,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getCount" resultType="java.lang.Integer">    
+      SELECT COUNT(*) FROM t_hyper_link
+  </select>
+</mapper>

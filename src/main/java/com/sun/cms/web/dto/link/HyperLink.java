@@ -1,101 +1,85 @@
 package com.sun.cms.web.dto.link;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.sun.cms.model.BaseDto;
 
-@Entity
-@Table(name="t_cms_link")
-public class HyperLink {
-	/**
-	 * 超链接标识
-	 */
-	private int id;
-	/**
-	 * 超链接的标题
-	 */
-	private String title;
-	/**
-	 * 超链接的url
-	 */
-	private String url;
-	/**
-	 * 超链接的类型
-	 */
-	private String type;
-	/**
-	 * 是否在新窗口中打开，0表示否，1表示是
-	 */
-	private int newWin;
-	/**
-	 * 超链接的id，html的标签id
-	 */
-	private String urlId;
-	/**
-	 * 超链接的class，html的标签的class
-	 */
-	private String urlClass;
-	/**
-	 * 超链接的位置
-	 */
-	private int pos;
-	
-	@Id
-	@GeneratedValue
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	
-	@Column(name="new_win")
-	public int getNewWin() {
-		return newWin;
-	}
-	public void setNewWin(int newWin) {
-		this.newWin = newWin;
-	}
-	
-	@Column(name="url_id")
-	public String getUrlId() {
-		return urlId;
-	}
-	public void setUrlId(String urlId) {
-		this.urlId = urlId;
-	}
-	@Column(name="url_class")
-	public String getUrlClass() {
-		return urlClass;
-	}
-	public void setUrlClass(String urlClass) {
-		this.urlClass = urlClass;
-	}
-	public int getPos() {
-		return pos;
-	}
-	public void setPos(int pos) {
-		this.pos = pos;
-	}
+public class HyperLink extends BaseDto{
+    private Integer id;
+
+    private String title;
+
+    private String url;
+
+    private String type;
+
+    private int newwin;
+
+    private String urlid;
+
+    private String urlclass;
+
+    private Integer pos;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
+    }
+
+    public int getNewwin() {
+        return newwin;
+    }
+
+    public void setNewwin(int newwin) {
+        this.newwin = newwin;
+    }
+
+    public String getUrlid() {
+        return urlid;
+    }
+
+    public void setUrlid(String urlid) {
+        this.urlid = urlid == null ? null : urlid.trim();
+    }
+
+    public String getUrlclass() {
+        return urlclass;
+    }
+
+    public void setUrlclass(String urlclass) {
+        this.urlclass = urlclass == null ? null : urlclass.trim();
+    }
+
+    public Integer getPos() {
+        return pos;
+    }
+
+    public void setPos(Integer pos) {
+        this.pos = pos;
+    }
 }

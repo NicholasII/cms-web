@@ -156,13 +156,13 @@
 		<!-- 分页插件 -->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper</artifactId>
+			<artifactId>pagehelper</artifactId>  
 		</dependency>
 		
 		<dependency>
 				<groupId>jsptags</groupId>
 				<artifactId>pager-taglib</artifactId>
-		</dependency>
+		</dependency> 
 		<!-- 自定义maven -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
